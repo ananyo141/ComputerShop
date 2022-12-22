@@ -1,0 +1,7 @@
+# ignore files for frontend
+# build files
+build/
+dist
+dist-ssr
+*.local
+
