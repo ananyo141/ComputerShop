@@ -9,6 +9,7 @@ lerna-debug.log*
 
 # Modules and deps
 node_modules/
+.husky/
 
 # Editor directories and files
 .vscode/*
