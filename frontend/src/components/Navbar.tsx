@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
+import NavItems from "../data/NavItems";
+
 type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <nav className="fixed w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
+    <nav className="z-50 fixed w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
         <button
           className="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
@@ -30,17 +32,11 @@ const Navbar = (props: Props) => {
           </a>
           {/* Left links */}
           <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-            <li className="nav-item p-2">
-              <Link className="nav-link text-white" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item p-2">
-              <Link to="/signin">Sign In</Link>
-            </li>
-            <li className="nav-item p-2">
-              <Link to="/signup">Sign Up</Link>
-            </li>
+            {NavItems.map((obj, i) => (
+              <li key={i} className="nav-item p-2">
+                <Link to={obj.path}>{obj.name}</Link>
+              </li>
+            ))}
           </ul>
           {/* <!-- Left links --> */}
         </div>
