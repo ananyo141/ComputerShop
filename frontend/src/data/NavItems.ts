@@ -1,9 +1,9 @@
-type NavItem = {
+export type NavItemType = {
   name: string;
   path: string;
 };
 
-const NavItems: NavItem[] = [
+const NavItems: NavItemType[] = [
   { name: "Home", path: "/" },
   { name: "Sign In", path: "/signin" },
   { name: "Sign Up", path: "/signup" },
