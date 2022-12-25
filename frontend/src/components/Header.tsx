@@ -1,5 +1,7 @@
 import React from "react";
 
+import pcimage from "../assets/header_pc.jpg";
+
 type Props = {};
 
 const Header = (props: Props) => {
@@ -10,39 +12,39 @@ const Header = (props: Props) => {
       {/* Section: Design Block */}
       <section className="mb-40 overflow-hidden">
         <div
-          className="relative overflow-hidden bg-no-repeat bg-cover"
+          className="relative overflow-hidden bg-cover bg-no-repeat"
           // style="background-position: 50%; background-image: url('https://mdbootstrap.com/img/new/standard/city/078.jpg');
           style={{
             height: "500px",
             backgroundPosition: "50%",
-            backgroundImage:
-              "url('https://mdbootstrap.com/img/new/standard/city/078.jpg')",
+            backgroundImage: `url(${pcimage})`,
           }}
         >
-          <div className="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed bg-[rgba(0,0,0,0.75)]">
-            <div className="flex justify-center items-center h-full">
-              <div className="text-center text-white px-6 md:px-12">
-                <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
-                  The best offer on the market <br />
-                  <span>for your business</span>
+          <div className="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[rgba(0,0,0,0.75)] bg-fixed">
+            <div className="flex h-full items-center justify-center">
+              <div className="px-6 text-center text-white md:px-12">
+                <h1 className="mb-12 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
+                  Find all the parts you need to
+                  <br />
+                  <span>build your next pc!</span>
                 </h1>
                 <a
-                  className="inline-block px-7 py-3 mr-1.5 border-2 border-white text-white font-medium text-sm leading-snug uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                  className="mr-1.5 inline-block rounded-full border-2 border-white px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   href="#!"
                   role="button"
                 >
-                  Get started
+                  Start Shopping
                 </a>
                 <a
-                  className="inline-block px-7 py-3 border-2 border-transparent bg-transparent text-white font-medium text-sm leading-snug uppercase rounded-full focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                  className="inline-block rounded-full border-2 border-transparent bg-transparent px-7 py-3 text-sm font-medium uppercase leading-snug text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   href="#!"
                   role="button"
                 >
-                  Learn more
+                  Browse Products
                 </a>
               </div>
             </div>
@@ -50,7 +52,7 @@ const Header = (props: Props) => {
         </div>
 
         <div
-          className="-mt-2.5 md:-mt-4 lg:-mt-6 xl:-mt-10 text-[#fff]"
+          className="-mt-2.5 text-[#fff] md:-mt-4 lg:-mt-6 xl:-mt-10"
           // style="height: 50px; transform: scale(2); transform-origin: top center; color: #fff;"
           style={{
             height: "50px",

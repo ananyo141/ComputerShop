@@ -1,23 +1,20 @@
 import React from "react";
-
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
+
+import signup from "../assets/signup.svg";
 
 type Props = {};
 
 const SignUp = (props: Props) => {
   return (
-    <section className="h-screen">
+    <section className="h-fit lg:h-screen">
       <div className="container flex flex-col px-6 py-12 h-full">
         <h1 className="mx-auto pl-2 font-light tracking-tight text-4xl mb-10 lg:hidden">
           Create an account
         </h1>
         <div className="flex justify-center items-center flex-wrap h-full text-gray-800">
           <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-              className="w-full"
-              alt="Phone image"
-            />
+            <img src={signup} className="w-full" alt="Phone image" />
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
             <h1 className="font-light text-4xl mb-8 hidden lg:block">

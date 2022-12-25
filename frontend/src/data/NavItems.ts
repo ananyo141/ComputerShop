@@ -5,8 +5,8 @@ export type NavItemType = {
 
 const NavItems: NavItemType[] = [
   { name: "Home", path: "/" },
-  { name: "Sign In", path: "/signin" },
-  { name: "Sign Up", path: "/signup" },
+  { name: "Login", path: "/signin" },
+  { name: "SignUp", path: "/signup" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];

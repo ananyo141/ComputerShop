@@ -28,7 +28,7 @@ const Navbar = (props: Props) => {
           id="navbarSupportedContent1"
         >
           <a className="text-xl text-white pr-2 font-semibold" href="#">
-            Computer Shop
+            ComputerShop
           </a>
           {/* Left links */}
           <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">

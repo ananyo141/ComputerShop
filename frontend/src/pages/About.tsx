@@ -1,5 +1,7 @@
 import React from "react";
 
+import aboutbanner from "../assets/aboutbanner.jpg";
+
 type Props = {};
 
 const About = (props: Props) => {
@@ -15,8 +17,7 @@ const About = (props: Props) => {
           style={{
             height: "500px",
             backgroundPosition: "50%",
-            backgroundImage:
-              "url('https://mdbootstrap.com/img/new/textures/full/142.jpg')",
+            backgroundImage: `url(${aboutbanner})`,
           }}
         ></div>
 
