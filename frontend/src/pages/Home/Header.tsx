@@ -1,6 +1,6 @@
 import React from "react";
 
-import pcimage from "../assets/header_pc.jpg";
+import pcimage from "../../assets/header_pc.jpg";
 
 type Props = {};
 

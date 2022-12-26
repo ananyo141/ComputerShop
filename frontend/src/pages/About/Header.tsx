@@ -1,10 +1,10 @@
 import React from "react";
 
-import aboutbanner from "../assets/aboutbanner.jpg";
+import aboutbanner from "../../assets/aboutbanner.jpg";
 
 type Props = {};
 
-const About = (props: Props) => {
+const Header = (props: Props) => {
   return (
     <div>
       {/* Container for demo purpose */}
@@ -64,4 +64,4 @@ const About = (props: Props) => {
   );
 };
 
-export default About;
+export default Header;

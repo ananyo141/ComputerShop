@@ -1,7 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
-import signin from "../assets/signin.webp";
+import signin from "../../assets/signin.webp";
 
 type Props = {};
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import contactBanner from "../assets/contact_banner.jpg";
+import contactBanner from "../../assets/contact_banner.jpg";
 
 type Props = {};
 

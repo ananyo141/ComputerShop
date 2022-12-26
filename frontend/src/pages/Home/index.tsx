@@ -1,8 +1,8 @@
 import React from "react";
 
-import Header from "../components/Header";
-import ShopItem from "../components/ShopItem";
-import Search from "../components/Search";
+import Header from "./Header";
+import ShopItem from "./ShopItem";
+import Search from "../../components/Search";
 
 type Props = {};
 

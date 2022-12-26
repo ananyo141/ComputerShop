@@ -1,7 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 
-import signup from "../assets/signup.svg";
+import signup from "../../assets/signup.svg";
 
 type Props = {};
 
