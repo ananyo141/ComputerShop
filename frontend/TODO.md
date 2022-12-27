@@ -24,7 +24,7 @@ Save three items at the top layer of app:
   Backend Provides initial products database as
   A JSON object of _id_ fields and _keys_:
 
-  ```json
+  ```
   {
     id1: {
         imgLink: string,
@@ -44,7 +44,7 @@ Save three items at the top layer of app:
   Save a stateful array that tracks the id of the chosen item and the amount
   required.
 
-  ```json
+  ```
   [
     {
       "id": string,
@@ -58,6 +58,6 @@ Save three items at the top layer of app:
 - **Wishlist: Stateful**
   Save a stateful array that keeps the id of items marked as wishlist.
   Show in wishlist page with option to buy, and remove from wishlist.
-  ```json
+  ```
   ["id1", "id2", "id3"]
   ```
