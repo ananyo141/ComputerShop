@@ -12,7 +12,7 @@ type Props = {
   amount: number;
 };
 
-const ShopItem = (props: Props) => {
+const ItemVar1 = (props: Props) => {
   return (
     <div className="mb-6 lg:mb-0">
       <div className="relative block rounded-lg bg-white shadow-lg">
@@ -68,4 +68,4 @@ const ShopItem = (props: Props) => {
   );
 };
 
-export default ShopItem;
+export default ItemVar1;

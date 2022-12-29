@@ -1,13 +1,14 @@
+// Design Inspiration: https://tailwindui.com/img/components/checkout-pages.01-with-order-summary-sidebar-xl.png
+
 import React from "react";
 
 type Props = {};
-
 const Checkout = (props: Props) => {
   return (
     <div>
       <div className="mt-20">
-        <h1 className="text-md flex items-center justify-center font-bold text-blue-600 lg:text-3xl">
-          Tailwind CSS Ecommerce Checkout Page UI
+        <h1 className="text-md flex items-center justify-center text-2xl font-bold text-cyan-700 lg:text-3xl">
+          Checkout
         </h1>
       </div>
       <div className="container mx-auto p-12">
