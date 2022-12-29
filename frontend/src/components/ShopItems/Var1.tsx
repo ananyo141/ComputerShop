@@ -32,9 +32,9 @@ const ShopItem = (props: Props) => {
           <h5 className="mb-3 text-lg font-bold">{props.title}</h5>
           <p className="mb-4 text-gray-500">
             <small>
-              Price <u>{props.price}</u>
+              Price <u>${props.price}</u>
               <a href="" className="ml-2 text-gray-900">
-                {props.seller}
+                Sold by {props.seller}
               </a>
             </small>
           </p>
