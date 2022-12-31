@@ -4,16 +4,20 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
+import { CartStorageObjectType } from "../models/CartItem";
+
 import NavItems from "../data/NavItems";
 
-type Props = {};
+type Props = {
+  cart: CartStorageObjectType;
+};
 
-const Navbar = (props: Props) => {
+const Navbar = ({ cart }: Props) => {
   return (
-    <nav className="z-50 fixed w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
-      <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+    <nav className="navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between bg-gray-900 py-3 text-gray-200 shadow-lg">
+      <div className="container-fluid flex w-full flex-wrap items-center justify-between px-6">
         <button
-          className="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
+          className="navbar-toggler border-0 bg-transparent py-2 px-2.5 text-gray-200 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent1"
@@ -24,14 +28,14 @@ const Navbar = (props: Props) => {
           <GiHamburgerMenu className="scale-150" />
         </button>
         <div
-          className="collapse navbar-collapse flex-grow items-center"
+          className="navbar-collapse collapse flex-grow items-center"
           id="navbarSupportedContent1"
         >
-          <a className="text-xl text-white pr-2 font-semibold" href="#">
+          <a className="pr-2 text-xl font-semibold text-white" href="#">
             ComputerShop
           </a>
           {/* Left links */}
-          <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
+          <ul className="navbar-nav list-style-none mr-auto flex flex-col pl-0">
             {NavItems.map((obj, i) => (
               <li key={i} className="nav-item p-2">
                 <Link to={obj.path}>{obj.name}</Link>
@@ -43,17 +47,20 @@ const Navbar = (props: Props) => {
         {/*  Collapsible wrapper */}
 
         {/* Right elements */}
-        <div className="flex items-center relative">
+        <div className="relative flex items-center">
           {/* Icon */}
           <a
-            className="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4"
+            className="mr-4 text-white opacity-60 hover:opacity-80 focus:opacity-80"
             href="#"
           >
             <BsFillCartFill className="scale-125" />
           </a>
+          <span className="absolute -mt-2.5 ml-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
+            {Object.keys(cart).length}
+          </span>
           <div className="dropdown relative">
             <a
-              className="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4 dropdown-toggle hidden-arrow flex items-center"
+              className="dropdown-toggle hidden-arrow mr-4 flex items-center text-white opacity-60 hover:opacity-80 focus:opacity-80"
               href="#"
               id="dropdownMenuButton1"
               role="button"
@@ -61,17 +68,17 @@ const Navbar = (props: Props) => {
               aria-expanded="false"
             >
               <BsFillBellFill className="scale-125" />
-              <span className="text-white bg-red-700 absolute rounded-full text-xs -mt-2.5 ml-2 py-0 px-1.5">
+              <span className="absolute -mt-2.5 ml-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
                 1
               </span>
             </a>
             <ul
-              className="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
+              className="dropdown-menu absolute left-auto right-0 z-50 float-left m-0 mt-1 hidden min-w-max list-none rounded-lg border-none bg-white bg-clip-padding py-2 text-left text-base shadow-lg"
               aria-labelledby="dropdownMenuButton1"
             >
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Action
@@ -79,7 +86,7 @@ const Navbar = (props: Props) => {
               </li>
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Another action
@@ -87,7 +94,7 @@ const Navbar = (props: Props) => {
               </li>
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Something else here
@@ -97,7 +104,7 @@ const Navbar = (props: Props) => {
           </div>
           <div className="dropdown relative">
             <a
-              className="dropdown-toggle flex items-center hidden-arrow"
+              className="dropdown-toggle hidden-arrow flex items-center"
               href="#"
               id="dropdownMenuButton2"
               role="button"
@@ -106,18 +113,18 @@ const Navbar = (props: Props) => {
             >
               <img
                 src="https://mdbootstrap.com/img/new/avatars/2.jpg"
-                className="rounded-full h-[25px] w-[25px]"
+                className="h-[25px] w-[25px] rounded-full"
                 alt=""
                 loading="lazy"
               />
             </a>
             <ul
-              className="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
+              className="dropdown-menu absolute left-auto right-0 z-50 float-left m-0 mt-1 hidden min-w-max list-none rounded-lg border-none bg-white bg-clip-padding py-2 text-left text-base shadow-lg"
               aria-labelledby="dropdownMenuButton2"
             >
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Action
@@ -125,7 +132,7 @@ const Navbar = (props: Props) => {
               </li>
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Another action
@@ -133,7 +140,7 @@ const Navbar = (props: Props) => {
               </li>
               <li>
                 <a
-                  className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                  className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                   href="#"
                 >
                   Something else here

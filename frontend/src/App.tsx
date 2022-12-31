@@ -24,7 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="pb-14">
-        <Navbar />
+        <Navbar cart={cartItems} />
       </div>
       <Routes>
         <Route
