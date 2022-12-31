@@ -13,13 +13,13 @@ import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
 
 import { Convert } from "./models/Product";
-import { CartItem } from "./models/CartItem";
+import { CartStorageObjectType } from "./models/CartItem";
 
 import ProductData from "./data/products.json";
 
 function App() {
   const products = Convert.toProducts(JSON.stringify(ProductData));
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartStorageObjectType>({});
 
   return (
     <BrowserRouter>
@@ -27,7 +27,16 @@ function App() {
         <Navbar />
       </div>
       <Routes>
-        <Route path="/" element={<Home products={products} />}></Route>
+        <Route
+          path="/"
+          element={
+            <Home
+              products={products}
+              cartItems={cartItems}
+              onChangeCart={setCartItems}
+            />
+          }
+        ></Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/checkout" element={<Checkout />} />

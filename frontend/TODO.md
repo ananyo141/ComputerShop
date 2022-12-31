@@ -2,23 +2,24 @@
 
 - [ ] Use axios for requests
 - [ ] Add highlight for current tab in navbar
+- [ ] Add wishlist feature
 
 ### Home Page
 
 - [ ] Render login/signup if not logged in; render logout if logged in
-- [ ] Add state for home add to cart
-- [ ] Add search bar to filter products by name
+- [x] Add state for home add to cart
+- [x] Add search bar to filter products by name
+  - [ ] Add interactivity
 - [ ] Show total number of products in cart navbar
 - [ ] Show previous orders in notifications navbar
 - [ ] Show user profile (basics - avatar, name, email) on navbar
 
 ### Data Format
 
-Save three items at the top layer of app:
+Save two items at the top layer of app:
 
-1. products database,
-2. list of cart items chosen,
-3. list of wishlist items
+1. products database, and
+2. list of cart items chosen
 
 - **Products: Non-Stateful**
   Backend Provides initial products database as
@@ -26,7 +27,7 @@ Save three items at the top layer of app:
 
   ```
   {
-    id1: {
+    id: {
         imgLink: string,
         name: string,
         price: number,
@@ -41,23 +42,16 @@ Save three items at the top layer of app:
   Fetch it first time the app loads.
 
 - **CartItems: Stateful**
-  Save a stateful array that tracks the id of the chosen item and the amount
-  required.
+  Save a stateful object that tracks the id of the chosen item and the amount
+  required, also if wishlisted.
 
   ```
-  [
-    {
-      "id": string,
-      "amount": number
+  {
+    id: {
+      amount: number,
+      isWishlisted: boolean
     }
-  ]
+  }
   ```
 
-  Render this array in the Cart page, with removal feature
-
-- **Wishlist: Stateful**
-  Save a stateful array that keeps the id of items marked as wishlist.
-  Show in wishlist page with option to buy, and remove from wishlist.
-  ```
-  ["id1", "id2", "id3"]
-  ```
+  Render this object in the Cart page, with removal feature

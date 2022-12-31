@@ -1,9 +1,4 @@
-// To parse this data:
-//
-//   import { Convert } from "./file";
-//
-//   const product = Convert.toProduct(json);
-
+// Product details to be fetched from backend
 export interface Product {
   imgLink: string;
   name: string;
@@ -13,7 +8,10 @@ export interface Product {
   inStock: number;
 }
 
-// Converts JSON strings to/from your types
+// Object type to store product object for id-key values
+export type ProductStorageObjectType = { [key: string]: Product };
+
+// Converts JSON strings to/from ProductStorageObjectType types
 export class Convert {
   public static toProducts(json: string): { [key: string]: Product } {
     return JSON.parse(json);

@@ -4,13 +4,16 @@ import Header from "./Header";
 import ItemVar1 from "../../components/ShopItems/ItemVar1";
 import Search from "../../components/Search";
 
-import { Product } from "../../models/Product";
+import { ProductStorageObjectType } from "../../models/Product";
+import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  products: { [key: string]: Product };
+  products: ProductStorageObjectType;
+  cartItems: CartStorageObjectType;
+  onChangeCart: React.Dispatch<React.SetStateAction<CartStorageObjectType>>;
 };
 
-const Home = ({ products }: Props) => {
+const Home = ({ products, cartItems, onChangeCart }: Props) => {
   return (
     <div>
       <Header />
@@ -19,12 +22,10 @@ const Home = ({ products }: Props) => {
         {Object.getOwnPropertyNames(products).map((key, i) => (
           <ItemVar1
             key={i}
-            imgUrl={products[key].imgLink}
-            title={products[key].name}
-            price={products[key].price}
-            seller={products[key].seller}
-            desc={products[key].desc}
-            amount={0}
+            productId={key}
+            products={products}
+            cartItems={cartItems}
+            onChangeAmount={onChangeCart}
           />
         ))}
       </div>
