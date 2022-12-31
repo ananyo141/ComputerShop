@@ -33,7 +33,7 @@ function App() {
             <Home
               products={products}
               cartItems={cartItems}
-              onChangeCart={setCartItems}
+              onCartChange={setCartItems}
             />
           }
         ></Route>

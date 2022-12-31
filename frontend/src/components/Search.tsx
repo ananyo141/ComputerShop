@@ -1,15 +1,20 @@
 import React from "react";
 import { BiSearchAlt } from "react-icons/bi";
 
-type Props = {};
+type Props = {
+  filter: string;
+  onFilterChange: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const Search = (props: Props) => {
+const Search = ({ filter, onFilterChange }: Props) => {
   return (
     <div className="flex justify-center">
       <div className="mb-3 xl:w-96">
         <div className="input-group relative mb-4 flex w-full flex-wrap items-stretch">
           <input
             type="search"
+            value={filter}
+            onChange={(e) => onFilterChange(e.target.value)}
             className="form-control relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
             placeholder="Search"
             aria-label="Search"

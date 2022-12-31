@@ -9,7 +9,8 @@
 - [ ] Render login/signup if not logged in; render logout if logged in
 - [x] Add state for home add to cart
 - [x] Add search bar to filter products by name
-  - [ ] Add interactivity
+  - [x] Add interactivity
+  - [ ] Embolden found search term
 - [x] Show total number of products in cart navbar
 - [ ] Show previous orders in notifications navbar
 - [ ] Show user profile (basics - avatar, name, email) on navbar

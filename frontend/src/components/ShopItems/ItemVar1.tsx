@@ -10,14 +10,14 @@ type Props = {
   productId: string;
   products: ProductStorageObjectType;
   cartItems: CartStorageObjectType;
-  onChangeAmount: CallableFunction;
+  onAmountChange: CallableFunction;
 };
 
 const ItemVar1 = ({
   productId,
   products,
   cartItems,
-  onChangeAmount,
+  onAmountChange,
 }: Props) => {
   const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
     // Decrement the amount related to id
@@ -26,7 +26,7 @@ const ItemVar1 = ({
     if (!cartItems[productId]) return;
     cartItems[productId].amount--;
     if (cartItems[productId].amount === 0) delete cartItems[productId];
-    onChangeAmount((_: CartStorageObjectType) => ({
+    onAmountChange((_: CartStorageObjectType) => ({
       ...cartItems,
     }));
   };
@@ -38,7 +38,7 @@ const ItemVar1 = ({
       : ({ amount: 0, isWishlisted: false } as CartItem);
     product.amount++;
     cartItems[productId] = product;
-    onChangeAmount((_: CartStorageObjectType) => ({
+    onAmountChange((_: CartStorageObjectType) => ({
       ...cartItems,
     }));
   };
