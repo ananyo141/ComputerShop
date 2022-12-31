@@ -29,7 +29,6 @@ const ItemVar1 = ({
     onChangeAmount((_: CartStorageObjectType) => ({
       ...cartItems,
     }));
-    console.log(cartItems);
   };
   const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
     // Increment the amount related to id
@@ -42,7 +41,6 @@ const ItemVar1 = ({
     onChangeAmount((_: CartStorageObjectType) => ({
       ...cartItems,
     }));
-    console.log(cartItems);
   };
 
   const product = products[productId];

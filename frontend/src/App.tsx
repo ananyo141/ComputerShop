@@ -15,10 +15,10 @@ import Checkout from "./pages/Checkout";
 import { Convert } from "./models/Product";
 import { CartStorageObjectType } from "./models/CartItem";
 
-import ProductData from "./data/products.json";
+import PRODUCTS from "./data/FakerProducts";
 
 function App() {
-  const products = Convert.toProducts(JSON.stringify(ProductData));
+  const products = Convert.toProducts(JSON.stringify(PRODUCTS));
   const [cartItems, setCartItems] = useState<CartStorageObjectType>({});
 
   return (
