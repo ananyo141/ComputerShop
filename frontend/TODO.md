@@ -3,6 +3,7 @@
 - [ ] Use axios for requests
 - [ ] Add highlight for current tab in navbar
 - [ ] Add wishlist feature
+- [ ] Implement useReducer for optimised state management
 
 ### Home Page
 

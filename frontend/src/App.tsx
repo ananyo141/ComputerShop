@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
 import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
+import Cart from "./pages/Cart";
 
 import { Convert } from "./models/Product";
 import { CartStorageObjectType } from "./models/CartItem";
@@ -39,6 +40,7 @@ function App() {
         ></Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

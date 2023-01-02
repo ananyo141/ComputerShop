@@ -1,52 +1,55 @@
 import React from "react";
 
+import customerPic from "../../assets/about_stat.jpg";
+
 import "./stats.css";
 
 type Props = {};
 
 const Stats = (props: Props) => {
   return (
-    <div className="container my-24 px-6 mx-auto">
+    <div className="container my-24 mx-auto px-6">
       {/* Container for demo purpose */}
 
       {/* Section: Design Block */}
-      <section className="mb-32 text-gray-800 text-center lg:text-left">
+      <section className="mb-32 text-center text-gray-800 lg:text-left">
         {/* Jumbotron */}
-        <div className="container mx-auto xl:px-32 text-center lg:text-left">
-          <div className="grid lg:grid-cols-2 items-center">
+        <div className="container mx-auto text-center lg:text-left xl:px-32">
+          <div className="grid items-center lg:grid-cols-2">
             <div className="mb-12 lg:mb-0">
               <div
-                className="relative z-[1] backdrop-blur-2xl bg-[hsla(0,0%,100%,0.55)] block rounded-lg shadow-lg px-6 py-12 md:px-12 lg:-mr-14"
+                className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-lg backdrop-blur-2xl md:px-12 lg:-mr-14"
                 // style="backdrop-filter: blur(30px); z-index: 1"
               >
-                <h2 className="text-3xl font-bold mb-4 display-5">
+                <h2 className="display-5 mb-4 text-3xl font-bold">
                   Why is it so great?
                 </h2>
-                <p className="text-gray-500 mb-12">
-                  Nunc tincidunt vulputate elit. Mauris varius purus malesuada
-                  neque iaculis malesuada. Aenean gravida magna orci, non
-                  efficitur est porta id. Donec magna diam.
+                <p className="mb-12 text-gray-500">
+                  Our service provides you the best and most efficient product
+                  collection and competitive prices never seen before, trusted
+                  by customers worldwide and relied upon by thousands of
+                  international companies. Choose your build today!
                 </p>
 
-                <div className="grid md:grid-cols-3 gap-x-6">
+                <div className="grid gap-x-6 md:grid-cols-3">
                   <div className="mb-12 md:mb-0">
-                    <h2 className="text-3xl font-bold text-dark mb-4">10%</h2>
-                    <h5 className="text-lg font-medium text-gray-500 mb-0">
-                      Less sugar
+                    <h2 className="text-dark mb-4 text-3xl font-bold">97%</h2>
+                    <h5 className="mb-0 text-lg font-medium text-gray-500">
+                      Less Hassle
                     </h5>
                   </div>
 
                   <div className="mb-12 md:mb-0">
-                    <h2 className="text-3xl font-bold text-dark mb-4">70%</h2>
-                    <h5 className="text-lg font-medium text-gray-500 mb-0">
-                      More flavor
+                    <h2 className="text-dark mb-4 text-3xl font-bold">100%</h2>
+                    <h5 className="mb-0 text-lg font-medium text-gray-500">
+                      Value
                     </h5>
                   </div>
 
                   <div className="">
-                    <h2 className="text-3xl font-bold text-dark mb-4">0%</h2>
-                    <h5 className="text-lg font-medium text-gray-500 mb-0">
-                      Gluten
+                    <h2 className="text-dark mb-4 text-3xl font-bold">0%</h2>
+                    <h5 className="mb-0 text-lg font-medium text-gray-500">
+                      Problems
                     </h5>
                   </div>
                 </div>
@@ -55,9 +58,9 @@ const Stats = (props: Props) => {
 
             <div>
               <img
-                src="https://mdbootstrap.com/img/new/ecommerce/vertical/088.jpg"
-                className="w-full shadow-lg fancy-border-radius rotate-lg-6"
-                alt=""
+                src={customerPic}
+                className="fancy-border-radius rotate-lg-6 w-full shadow-lg"
+                alt="Happy Customer"
               />
             </div>
           </div>
