@@ -6,6 +6,7 @@ import { CartStorageObjectType } from "../../models/CartItem";
 import { ProductStorageObjectType } from "../../models/Product";
 import ItemVar2 from "../../components/ShopItems/ItemVar2";
 import Summary from "./Summary";
+import EmptyCart from "./EmptyCart";
 
 type Props = {
   products: ProductStorageObjectType;
@@ -14,13 +15,15 @@ type Props = {
 };
 
 const Cart = ({ products, cartItems, onCartChange }: Props) => {
-  return (
+  return Object.keys(cartItems).length === 0 ? (
+    <EmptyCart />
+  ) : (
     <section className="p-5">
       <h1 className="mt-5 mb-10 text-4xl font-thin">Shopping Cart</h1>
       {/* Contains cart items and order summary horizontally */}
       <div className="container mx-auto flex flex-col justify-between lg:flex-row">
         {/* Contains cart items */}
-        <div className="flex flex-col items-center gap-2 lg:gap-9 mb-12 lg:w-2/3 lg:items-start ">
+        <div className="mb-12 flex flex-col items-center gap-2 lg:w-2/3 lg:items-start lg:gap-9 ">
           {Object.keys(cartItems).map((productsId) => (
             <>
               <ItemVar2
@@ -35,7 +38,7 @@ const Cart = ({ products, cartItems, onCartChange }: Props) => {
           ))}
         </div>
         {/* Contains order summary */}
-        <div className="w-full lg:w-1/3">
+        <div className="w-full xl:w-1/2">
           <Summary products={products} cartItems={cartItems} />
         </div>
       </div>

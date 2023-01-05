@@ -53,11 +53,11 @@ const ItemVar2 = ({
   };
 
   return (
-    <div className="container max-w-md">
+    <div className="w-full max-w-2xl">
       <div className="relative block rounded-lg bg-white shadow-lg lg:shadow-none">
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           <div
-            className="relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
+            className="overflow-hidden rounded-lg shadow-lg"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
           >
@@ -67,7 +67,7 @@ const ItemVar2 = ({
             />
           </div>
           <div className="flex w-full flex-col justify-between p-4">
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center sm:items-start">
               <h3 className="mb-2 text-lg font-semibold text-gray-800">
                 {product.name}
               </h3>
