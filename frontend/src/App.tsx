@@ -40,7 +40,16 @@ function App() {
         ></Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              products={products}
+              cartItems={cartItems}
+              onCartChange={setCartItems}
+            />
+          }
+        />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
