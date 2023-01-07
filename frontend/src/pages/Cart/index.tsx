@@ -4,6 +4,7 @@ import React from "react";
 
 import { CartStorageObjectType } from "../../models/CartItem";
 import { ProductStorageObjectType } from "../../models/Product";
+
 import ItemVar2 from "../../components/ShopItems/ItemVar2";
 import Summary from "./Summary";
 import EmptyCart from "./EmptyCart";

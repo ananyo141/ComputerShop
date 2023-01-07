@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import emptyCart from "../../assets/empty_cart.jpg";
 
 type Props = {};
 
 const EmptyCart = (props: Props) => {
+  const navigate = useNavigate();
   return (
     <div
       className="container mx-auto mt-20 flex w-full bg-white"
@@ -23,6 +25,7 @@ const EmptyCart = (props: Props) => {
             <a
               className="rounded bg-gray-900 px-4 py-3 text-xs font-semibold text-gray-200 hover:bg-gray-800"
               href="#"
+              onClick={() => navigate("/")}
             >
               Browse Products
             </a>
@@ -38,7 +41,6 @@ const EmptyCart = (props: Props) => {
           style={{
             backgroundPosition: "50%",
             backgroundImage: `url(${emptyCart})`,
-            // backgroundImage: `url${emptyCart}`,
           }}
         >
           <div className="h-full bg-black opacity-25" />

@@ -1,7 +1,9 @@
 import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
-
+import calculateTotal from "../../utils/CalculateTotal";
 import { ProductStorageObjectType } from "../../models/Product";
 import { CartStorageObjectType } from "../../models/CartItem";
 
@@ -11,9 +13,14 @@ type Props = {
 };
 
 const CheckoutItems = ({ products, cartItems }: Props) => {
+  const navigate = useNavigate();
+  const [subtotal, shippingCost, tax, total] = calculateTotal(
+    products,
+    cartItems
+  );
+
   return (
-    <div className="col-span-2 mx-auto max-w-4xl p-5">
-      <h1 className="text-xl font-medium">Shopping Cart</h1>
+    <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
       {Object.keys(cartItems).map((key) => (
         <ItemCheckoutVar
@@ -24,19 +31,27 @@ const CheckoutItems = ({ products, cartItems }: Props) => {
         />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
-        <div className="flex items-center">
-          <i className="fa fa-arrow-left pr-2 text-sm" />
-          <span className="text-md font-medium text-blue-500">
+        <div
+          className="group flex cursor-pointer items-center duration-200 hover:scale-110"
+          onClick={() => navigate("/")}
+        >
+          <FaArrowLeft className="mr-2 text-blue-700 group-hover:text-blue-900" />
+          <span className="text-md font-bold text-blue-500">
             Continue Shopping
           </span>
         </div>
         <div className="flex items-end justify-center">
-          <span className="mr-1 text-sm font-medium text-gray-400">
+          <span className="mr-1 text-lg font-thin text-gray-500">
             Subtotal:
           </span>
-          <span className="text-lg font-bold text-gray-800"> $24.90</span>
+          <span className="px-1 text-lg font-bold text-gray-800">
+            ${subtotal}
+          </span>
         </div>
       </div>
+      <small className="float-right text-red-900 opacity-80">
+        + ${(tax + shippingCost).toFixed(2)} charges.
+      </small>
     </div>
   );
 };

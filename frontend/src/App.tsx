@@ -37,7 +37,7 @@ function App() {
               onCartChange={setCartItems}
             />
           }
-        ></Route>
+        />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
