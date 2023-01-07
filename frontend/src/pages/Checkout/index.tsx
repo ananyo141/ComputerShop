@@ -1,30 +1,44 @@
 // Design Inspiration: https://tailwindui.com/img/components/checkout-pages.01-with-order-summary-sidebar-xl.png
+// https://bbbootstrap.com/snippets/
 
 import React from "react";
+
 import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
+import Card from "./Card";
 
-type Props = {};
+import { ProductStorageObjectType } from "../../models/Product";
+import { CartStorageObjectType } from "../../models/CartItem";
+
+type Props = {
+  products: ProductStorageObjectType;
+  cartItems: CartStorageObjectType;
+};
+
 const Checkout = (props: Props) => {
   return (
-    <div>
-      <div className="mt-20">
-        <h1 className="text-md flex items-center justify-center text-2xl font-thin text-cyan-700 lg:text-3xl">
-          Checkout
-        </h1>
-      </div>
-      <div className="container mx-auto p-12">
-        <div className="mx-auto flex w-full flex-col px-0 lg:flex-row">
-          <div className="flex flex-col md:w-full">
-            <h3 className="text-2xl font-medium text-gray-700">
-              Shipping Address
-            </h3>
-            <p className="mt-2 text-gray-500">
-              Fill in your shipping address to get a shipping estimate.
-            </p>
-            <ShippingForm />
+    <div className="bg-gray-300">
+      <div className="py-12">
+        <div className="container mx-auto rounded-lg bg-gray-100 shadow-lg">
+          <div className="md:flex">
+            <div className="mt-20 w-full px-10 py-5">
+              <h1 className="text-2xl font-thin text-gray-700">
+                Shipping Details
+              </h1>
+              <div className="flex flex-col-reverse gap-12 md:flex-row lg:gap-20">
+                <ShippingForm />
+                <div className="mx-auto mt-20">
+                  <Card />
+                </div>
+              </div>
+              <div className="mt-40 md:px-20">
+                <CheckoutItems
+                  products={props.products}
+                  cartItems={props.cartItems}
+                />
+              </div>
+            </div>
           </div>
-          <CheckoutItems />
         </div>
       </div>
     </div>
