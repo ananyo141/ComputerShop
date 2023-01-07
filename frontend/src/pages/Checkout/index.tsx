@@ -18,7 +18,7 @@ type Props = {
 const Checkout = (props: Props) => {
   return (
     <div className="bg-gray-300">
-      <div className="py-12">
+      <div className="sm:py-1 md:py-12">
         <div className="container mx-auto rounded-lg bg-gray-100 shadow-lg">
           <div className="md:flex">
             <div className="mt-20 w-full px-10 py-5">
