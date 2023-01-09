@@ -1,7 +1,7 @@
 ## TODOS
 
 - [ ] Use jwt auth
-- [ ] Send packages from get point to frontend
+- [ ] Send products from get point to frontend
 
 ## Routes
 

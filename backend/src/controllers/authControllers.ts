@@ -1,22 +1,13 @@
-import express from "express";
+import { Request, Response } from "express";
 
-export const loginController = (
-  req: express.Request,
-  res: express.Response
-) => {
+export const loginController = (_req: Request, _res: Response) => {
   console.info("Login called");
 };
 
-export const registerController = (
-  req: express.Request,
-  res: express.Response
-) => {
+export const registerController = (_req: Request, _res: Response) => {
   console.info("Register called");
 };
 
-export const logoutController = (
-  req: express.Request,
-  res: express.Response
-) => {
+export const logoutController = (_req: Request, _res: Response) => {
   console.info("Logout called");
 };
