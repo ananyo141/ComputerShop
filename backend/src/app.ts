@@ -5,7 +5,9 @@ import path from "path";
 import { productRouter } from "./routes/productRoutes";
 import { userRouter } from "./routes/userRoutes";
 import { authRouter } from "./routes/authRoutes";
-import { notFound } from "./middleware/notFound";
+import { routeNotFound } from "./middleware/routeNotFound";
+import { errorHandler } from "./middleware/errorHandler";
+
 import { PORT, BASEURL } from "./constants";
 import connectDB from "./db/connectDB";
 
@@ -25,7 +27,8 @@ app.use(`${BASEURL}/users`, userRouter);
 app.use(`${BASEURL}/products`, productRouter);
 
 // Custom middleware
-app.use(notFound);
+app.use(routeNotFound);
+app.use(errorHandler);
 
 const port = process.env.PORT || PORT;
 const start = async () => {
