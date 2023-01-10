@@ -4,6 +4,7 @@ import path from "path";
 
 import { productRouter } from "./routes/productRoutes";
 import { userRouter } from "./routes/userRoutes";
+import { authRouter } from "./routes/authRoutes";
 import { notFound } from "./middleware/notFound";
 import { PORT, BASEURL } from "./constants";
 import connectDB from "./db/connectDB";
@@ -16,15 +17,12 @@ const app: express.Application = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/products", productRouter);
-app.use("/users", userRouter);
-
-// Handling '/' Request
-app.get("/", (_req, _res) => {
-  _res.status(404).send({ error: `Use ${BASEURL} to access endpoints` });
-});
+app.use(`${BASEURL}/auth`, authRouter);
+app.use(`${BASEURL}/users`, userRouter);
+app.use(`${BASEURL}/products`, productRouter);
 
 // Custom middleware
 app.use(notFound);

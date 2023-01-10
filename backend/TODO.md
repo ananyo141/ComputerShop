@@ -12,12 +12,17 @@
 
 - _Base Url_: `/api/v1/`
 
-  - _Products_: `/products` (get)
+  - _Products_:
+
+    - get all: `/products`
+    - get one: `/products/:id`
 
   - _Users_:
-    - register: `/users/register` (post)
-    - login: `/users/login` (post)
-    - user specific: (base url `/users/:id`)
-      - cart: `/cart`
-      - orders: `/orders`
-      - bio: `/bio`
+
+    - bio: `/users/:id`
+    - cart: `/users/:id/cart`
+    - orders: `/users/:id/orders`
+
+  - _Authentication_:
+    - register **(post)**: `/register`
+    - login **(post)**: `/login`

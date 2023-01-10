@@ -2,4 +2,4 @@
 export const PORT: number = 3000;
 
 // start url
-export const BASEURL: string = "/api/v1/";
+export const BASEURL: string = "/api/v1";

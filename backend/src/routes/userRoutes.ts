@@ -1,17 +1,13 @@
 import express from "express";
 
 import {
-  registerController,
-  loginController,
-  logoutController,
+  userInfoController,
+  userCartController,
+  userOrderController,
 } from "../controllers/userControllers";
 
 export const userRouter = express.Router();
 
-userRouter.post("/register", registerController);
-userRouter.post("/login", loginController);
-userRouter.post("/logout", logoutController);
-
-userRouter.get("/", (_req, _res) => {
-  _res.send("User route");
-});
+userRouter.get("/:id", userInfoController);
+userRouter.get("/:id/cart", userCartController);
+userRouter.get("/:id/orders", userOrderController);

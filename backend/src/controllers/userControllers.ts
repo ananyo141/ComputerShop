@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 
-export const registerController = (_req: Request, _res: Response) => {
-  _res.send("register route");
+export const userInfoController = (_req: Request, _res: Response) => {
+  _res.json({ id: _req.params.id });
 };
 
-export const loginController = (_req: Request, _res: Response) => {
-  _res.send("login route");
+export const userCartController = (_req: Request, _res: Response) => {
+  _res.json({ id: _req.params.id });
 };
 
-export const logoutController = (_req: Request, _res: Response) => {
-  _res.send("logout route");
+export const userOrderController = (_req: Request, _res: Response) => {
+  _res.json({ id: _req.params.id });
 };
