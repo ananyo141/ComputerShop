@@ -9,7 +9,7 @@ import { routeNotFound } from "./middleware/routeNotFound";
 import { errorHandler } from "./middleware/errorHandler";
 
 import { PORT, BASEURL } from "./constants";
-import connectDB from "./db/connectDB";
+import { connectDB } from "./db/connectDB";
 
 // Parse .env file
 dotenv.config({ path: path.join(__dirname, ".env") });
@@ -34,7 +34,7 @@ const port = process.env.PORT || PORT;
 const start = async () => {
   try {
     // connect to database
-    await connectDB(process.env.CONNECTIONSTR!);
+    await connectDB();
     // Server setup
     app.listen(port, () => {
       console.log(`Server listening on: http://localhost:${port}/`);

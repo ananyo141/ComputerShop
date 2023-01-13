@@ -15,8 +15,7 @@ import Cart from "./pages/Cart";
 
 import { Convert } from "./models/Product";
 import { CartStorageObjectType } from "./models/CartItem";
-
-import PRODUCTS from "./data/FakerProducts";
+import PRODUCTS from "./data/products.json";
 
 function App() {
   const products = Convert.toProducts(JSON.stringify(PRODUCTS));

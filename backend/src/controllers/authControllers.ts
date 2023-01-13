@@ -1,6 +1,5 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { MongooseError, SchemaType } from "mongoose";
 
 import User from "../models/userModel";
 import * as CustomErrors from "../errors";
@@ -9,23 +8,26 @@ export const loginController = (_req: Request, _res: Response) => {
   _res.status(StatusCodes.OK).json(_req.body);
 };
 
-export const registerController = (_req: Request, _res: Response) => {
+export const registerController = async (
+  _req: Request,
+  _res: Response,
+  _next: NextFunction
+) => {
   if (!_req.body.name || !_req.body.email || !_req.body.password)
     throw new CustomErrors.BadRequestError(
       "Please provide all required fields"
     );
 
-  User.create(_req.body, (err: MongooseError, user: SchemaType) => {
-    if (err) {
-      if (err.name === "ValidationError") {
-        throw new CustomErrors.BadRequestError(err.message);
-      } else {
-        throw new CustomErrors.InternalServerError(err.message);
-      }
-    } else {
-      _res.status(StatusCodes.CREATED).json(user);
-    }
+  let user = await User.findOne({
+    email: _req.body.email,
   });
+
+  try {
+    user = await User.create(_req.body);
+    _res.status(StatusCodes.CREATED).json(user);
+  } catch (err: any) {
+    return _next(new CustomErrors.InternalServerError(err.message));
+  }
 };
 
 export const logoutController = (_req: Request, _res: Response) => {
