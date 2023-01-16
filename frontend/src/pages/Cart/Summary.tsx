@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartStorageObjectType } from "../../models/CartItem";
 
 import calculateTotal from "../../utils/CalculateTotal";
@@ -11,7 +11,7 @@ import calculateTotal from "../../utils/CalculateTotal";
 import Tooltip from "../../components/Tooltip";
 
 type Props = {
-  products: ProductStorageObjectType;
+  products: Product[];
   cartItems: CartStorageObjectType;
 };
 

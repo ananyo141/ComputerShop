@@ -1,56 +1,48 @@
 import React from "react";
 
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartItem, CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  productId: string;
-  products: ProductStorageObjectType;
+  product: Product;
   cartItems: CartStorageObjectType;
   onAmountChange: CallableFunction;
 };
 
-const ItemVar2 = ({
-  productId,
-  products,
-  cartItems,
-  onAmountChange,
-}: Props) => {
-  const product = products[productId];
+const ItemVar2 = ({ product, cartItems, onAmountChange }: Props) => {
+  // const onDelete = (_: React.MouseEvent<HTMLButtonElement>): void => {
+  //   // Delete the item from cart
+  //   if (!cartItems[productId]) return;
+  //   delete cartItems[productId];
+  //   onAmountChange((_: CartStorageObjectType) => ({
+  //     ...cartItems,
+  //   }));
+  // };
 
-  const onDelete = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    // Delete the item from cart
-    if (!cartItems[productId]) return;
-    delete cartItems[productId];
-    onAmountChange((_: CartStorageObjectType) => ({
-      ...cartItems,
-    }));
-  };
+  // const onDecrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
+  //   // Decrement the amount related to id
+  //   // Delete if reaches 0
+  //   // Guard against reaching negative number
+  //   if (!cartItems[productId]) return;
+  //   cartItems[productId].amount--;
+  //   if (cartItems[productId].amount === 0) delete cartItems[productId];
+  //   onAmountChange((_: CartStorageObjectType) => ({
+  //     ...cartItems,
+  //   }));
+  // };
 
-  const onDecrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    // Decrement the amount related to id
-    // Delete if reaches 0
-    // Guard against reaching negative number
-    if (!cartItems[productId]) return;
-    cartItems[productId].amount--;
-    if (cartItems[productId].amount === 0) delete cartItems[productId];
-    onAmountChange((_: CartStorageObjectType) => ({
-      ...cartItems,
-    }));
-  };
-
-  const onIncrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    // Increment the amount related to id
-    // Guard against overflowing max-in-stock value
-    let product = cartItems[productId]
-      ? cartItems[productId]
-      : ({ amount: 0, isWishlisted: false } as CartItem);
-    product.amount++;
-    cartItems[productId] = product;
-    onAmountChange((_: CartStorageObjectType) => ({
-      ...cartItems,
-    }));
-  };
+  // const onIncrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
+  //   // Increment the amount related to id
+  //   // Guard against overflowing max-in-stock value
+  //   let product = cartItems[productId]
+  //     ? cartItems[productId]
+  //     : ({ amount: 0, isWishlisted: false } as CartItem);
+  //   product.amount++;
+  //   cartItems[productId] = product;
+  //   onAmountChange((_: CartStorageObjectType) => ({
+  //     ...cartItems,
+  //   }));
+  // };
 
   return (
     <div className="w-full max-w-2xl">
@@ -83,7 +75,7 @@ const ItemVar2 = ({
                   <button
                     className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition duration-150 ease-in-out hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
                     aria-label="Decrement value"
-                    onClick={onDecrement}
+                    onClick={() => {}}
                   >
                     <svg
                       className="h-5 w-5"
@@ -100,13 +92,11 @@ const ItemVar2 = ({
                       ></path>
                     </svg>
                   </button>
-                  <span className="px-4 text-gray-700">
-                    {cartItems[productId] ? cartItems[productId].amount : 0}
-                  </span>
+                  <span className="px-4 text-gray-700">{0}</span>
                   <button
                     className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition duration-150 ease-in-out hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
                     aria-label="Increment value"
-                    onClick={onIncrement}
+                    onClick={() => {}}
                   >
                     <svg
                       className="h-5 w-5"
@@ -127,7 +117,7 @@ const ItemVar2 = ({
                   <button
                     className="ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition duration-150 ease-in-out hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
                     aria-label="Remove item"
-                    onClick={onDelete}
+                    onClick={() => {}}
                   >
                     <svg
                       className="h-5 w-5"

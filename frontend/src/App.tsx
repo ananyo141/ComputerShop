@@ -13,13 +13,17 @@ import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 
-import { Convert } from "./models/Product";
 import { CartStorageObjectType } from "./models/CartItem";
-import PRODUCTS from "./data/products.json";
+import { getAllProducts } from "./api/ProductApi";
 
+const products = await getAllProducts();
 function App() {
-  const products = Convert.toProducts(JSON.stringify(PRODUCTS));
-  const [cartItems, setCartItems] = useState<CartStorageObjectType>({});
+  // const products = PRODUCTS;
+
+  // const [cartItems, setCartItems] = useState<CartStorageObjectType>({
+  //   "1": { isWishlisted: false, amount: 1 },
+  // });
+  const [cartItems, setCartItems] = [null, null];
 
   return (
     <BrowserRouter>

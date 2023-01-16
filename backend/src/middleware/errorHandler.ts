@@ -9,6 +9,6 @@ export const errorHandler = (
   _res: Response,
   _next: NextFunction
 ) => {
-  console.log(err);
+  console.error(err);
   return _res.status(err.statusCode).json({ message: err.message });
 };

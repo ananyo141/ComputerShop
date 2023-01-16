@@ -1,16 +1,14 @@
 import React from "react";
 
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  productId: string;
-  products: ProductStorageObjectType;
+  product: Product;
   cartItems: CartStorageObjectType;
 };
 
-const ItemCheckoutVar = ({ productId, products, cartItems }: Props) => {
-  const product = products[productId];
+const ItemCheckoutVar = ({ product, cartItems }: Props) => {
   return (
     <div className="mt-6 flex items-center justify-between border-t pt-6">
       <div className="flex items-center">
@@ -18,7 +16,7 @@ const ItemCheckoutVar = ({ productId, products, cartItems }: Props) => {
         <div className="ml-3 flex flex-col">
           <span className="text-md w-auto font-medium">{product.name}</span>
           <span className="text-xs font-light text-gray-400">
-            #{productId.slice(-5)}
+            #{product._id.slice(-5)}
           </span>
         </div>
       </div>
@@ -27,7 +25,7 @@ const ItemCheckoutVar = ({ productId, products, cartItems }: Props) => {
           <input
             type="text"
             className="mx-2 h-6 w-8 rounded border bg-gray-100 px-2 text-sm focus:outline-none"
-            value={cartItems[productId].amount}
+            value={0}
             disabled={true}
           />
         </div>

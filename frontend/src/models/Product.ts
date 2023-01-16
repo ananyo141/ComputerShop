@@ -1,5 +1,6 @@
 // Product details to be fetched from backend
 export interface Product {
+  _id: string;
   imgLink: string;
   name: string;
   price: number;
@@ -8,16 +9,13 @@ export interface Product {
   inStock: number;
 }
 
-// Object type to store product object for id-key values
-export type ProductStorageObjectType = { [key: string]: Product };
-
-// Converts JSON strings to/from ProductStorageObjectType types
+// Converts JSON strings to/from Product arrays
 export class Convert {
-  public static toProducts(json: string): { [key: string]: Product } {
+  public static toProducts(json: string): Product[] {
     return JSON.parse(json);
   }
 
-  public static productsToJson(value: { [key: string]: Product }): string {
+  public static productsToJson(value: Product[]): string {
     return JSON.stringify(value);
   }
 }

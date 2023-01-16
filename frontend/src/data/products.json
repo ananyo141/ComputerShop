@@ -1,5 +1,6 @@
-{
-  "1": {
+[
+  {
+    "_id": "1",
     "imgLink": "https://images.unsplash.com/photo-1542978709-19c95dc3bc7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     "name": "Corsair RGB Ram 16GB",
     "price": 24.99,
@@ -7,7 +8,8 @@
     "desc": "CORSAIR Vengeance RGB Pro 16GB (2 x 8GB) 288-Pin",
     "inStock": 4
   },
-  "2": {
+  {
+    "_id": "2",
     "imgLink": "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     "name": "Asus TUF ROG Gaming Motherboard",
     "price": 29.99,
@@ -15,4 +17,4 @@
     "desc": "ASUS ROG Crosshair VI Extreme AMD Ryzen AM4 DDR4 M.2 3.1",
     "inStock": 1
   }
-}
+]

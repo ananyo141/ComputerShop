@@ -55,7 +55,7 @@ const Navbar = ({ cart }: Props) => {
           >
             <BsFillCartFill className="scale-125" />
             <span className="absolute top-0 left-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
-              {Object.keys(cart).length}
+              {0}
             </span>
           </Link>
           <div className="dropdown relative">

@@ -7,11 +7,11 @@ import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
 import Card from "./Card";
 
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  products: ProductStorageObjectType;
+  products: Product[];
   cartItems: CartStorageObjectType;
 };
 

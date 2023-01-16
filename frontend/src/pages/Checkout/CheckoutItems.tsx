@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
 import calculateTotal from "../../utils/CalculateTotal";
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  products: ProductStorageObjectType;
+  products: Product[];
   cartItems: CartStorageObjectType;
 };
 
@@ -22,13 +22,8 @@ const CheckoutItems = ({ products, cartItems }: Props) => {
   return (
     <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
-      {Object.keys(cartItems).map((key) => (
-        <ItemCheckoutVar
-          key={key}
-          productId={key}
-          products={products}
-          cartItems={cartItems}
-        />
+      {products.map((product: Product, i: number) => (
+        <ItemCheckoutVar key={i} product={product} cartItems={cartItems} />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
         <div

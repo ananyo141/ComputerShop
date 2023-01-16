@@ -3,47 +3,40 @@ import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 import { CartItem, CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  productId: string;
-  products: ProductStorageObjectType;
+  product: Product;
   cartItems: CartStorageObjectType;
   onAmountChange: CallableFunction;
 };
 
-const ItemVar1 = ({
-  productId,
-  products,
-  cartItems,
-  onAmountChange,
-}: Props) => {
-  const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-    // Decrement the amount related to id
-    // Delete if reaches 0
-    // Guard against reaching negative number
-    if (!cartItems[productId]) return;
-    cartItems[productId].amount--;
-    if (cartItems[productId].amount === 0) delete cartItems[productId];
-    onAmountChange((_: CartStorageObjectType) => ({
-      ...cartItems,
-    }));
-  };
-  const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-    // Increment the amount related to id
-    // Guard against overflowing max-in-stock value
-    let product = cartItems[productId]
-      ? cartItems[productId]
-      : ({ amount: 0, isWishlisted: false } as CartItem);
-    product.amount++;
-    cartItems[productId] = product;
-    onAmountChange((_: CartStorageObjectType) => ({
-      ...cartItems,
-    }));
-  };
+const ItemVar1 = ({ product, cartItems, onAmountChange }: Props) => {
+  // const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
+  //   // Decrement the amount related to id
+  //   // Delete if reaches 0
+  //   // Guard against reaching negative number
+  //   if (!cartItems[product._id]) return;
+  //   cartItems[product._id].amount--;
+  //   if (cartItems[productId].amount === 0) delete cartItems[productId];
+  //   onAmountChange((_: CartStorageObjectType) => ({
+  //     ...cartItems,
+  //   }));
+  // };
+  // const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
+  //   // Increment the amount related to id
+  //   // Guard against overflowing max-in-stock value
+  //   let product = cartItems[productId]
+  //     ? cartItems[productId]
+  //     : ({ amount: 0, isWishlisted: false } as CartItem);
+  //   product.amount++;
+  //   cartItems[productId] = product;
+  //   onAmountChange((_: CartStorageObjectType) => ({
+  //     ...cartItems,
+  //   }));
+  // };
 
-  const product = products[productId];
   return (
     <div className="mb-6 lg:mb-0">
       <div className="relative block rounded-lg bg-white shadow-lg">
@@ -81,14 +74,14 @@ const ItemVar1 = ({
             </a>
             {/* Item Count */}
             <div className="flex w-28 scale-125 items-center justify-evenly rounded-full bg-gray-300 md:scale-105 xl:scale-110">
-              <div onClick={onDecrement}>
+              <div onClick={() => {}}>
                 <AiOutlineMinus />
               </div>
               <div className="flex items-center gap-2 rounded-full bg-white px-3 ">
                 <FaShoppingCart className="text-amber-700" />
-                <p>{cartItems[productId] ? cartItems[productId].amount : 0}</p>
+                <p>{0}</p>
               </div>
-              <div onClick={onIncrement}>
+              <div onClick={() => {}}>
                 <AiOutlinePlus />
               </div>
             </div>

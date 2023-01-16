@@ -3,14 +3,14 @@
 import React from "react";
 
 import { CartStorageObjectType } from "../../models/CartItem";
-import { ProductStorageObjectType } from "../../models/Product";
+import { Product } from "../../models/Product";
 
 import ItemVar2 from "../../components/ShopItems/ItemVar2";
 import Summary from "./Summary";
 import EmptyCart from "./EmptyCart";
 
 type Props = {
-  products: ProductStorageObjectType;
+  products: Product[];
   cartItems: CartStorageObjectType;
   onCartChange: React.Dispatch<React.SetStateAction<CartStorageObjectType>>;
 };
@@ -25,12 +25,10 @@ const Cart = ({ products, cartItems, onCartChange }: Props) => {
       <div className="container mx-auto flex flex-col justify-between lg:flex-row">
         {/* Contains cart items */}
         <div className="mb-12 flex flex-col items-center gap-2 lg:w-2/3 lg:items-start lg:gap-9 ">
-          {Object.keys(cartItems).map((productsId) => (
+          {products.map((product) => (
             <>
               <ItemVar2
-                key={productsId}
-                productId={productsId}
-                products={products}
+                product={product}
                 cartItems={cartItems}
                 onAmountChange={onCartChange}
               />
