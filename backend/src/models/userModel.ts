@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+import CartSchema from "./schema/cartSchema";
+import WishlistSchema from "./schema/wishlistSchema";
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -17,6 +20,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password"],
     minlength: [6, "Password must be at least 6 characters"],
+  },
+  // embed cart and wishlist in user document
+  cart: {
+    type: [CartSchema],
+    default: [],
+  },
+  wishlist: {
+    type: [WishlistSchema],
+    default: [],
   },
 });
 
