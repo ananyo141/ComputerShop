@@ -1,13 +1,11 @@
 import express from "express";
 
-import {
-  userInfoController,
-  userCartController,
-  userOrderController,
-} from "../controllers/userControllers";
+import { getUserInfo } from "../controllers/userControllers";
+import { getUserCart } from "../controllers/cartControllers";
+import { getUserOrders } from "../controllers/orderControllers";
 
 export const userRouter = express.Router();
 
-userRouter.get("/:id", userInfoController);
-userRouter.get("/:id/cart", userCartController);
-userRouter.get("/:id/orders", userOrderController);
+userRouter.get("/:id", getUserInfo);
+userRouter.get("/:id/cart", getUserCart);
+userRouter.get("/:id/orders", getUserOrders);
