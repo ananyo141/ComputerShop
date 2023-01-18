@@ -15,7 +15,7 @@ export const getUserInfo = async (
     if (!user) {
       _next(new CustomError.NotFoundError("User not found"));
     } else {
-      _res.status(StatusCodes.OK).json({ name: user.name, email: user.email });
+      _res.status(StatusCodes.OK).json(user);
     }
   } catch (error: any) {
     if (error instanceof mongoose.Error.CastError) {
