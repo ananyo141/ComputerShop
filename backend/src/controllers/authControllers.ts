@@ -21,9 +21,11 @@ export const registerController = asyncWrapper(
     let user = await User.findOne({
       email: _req.body.email,
     });
-
-    user = await User.create(_req.body);
-    _res.status(StatusCodes.CREATED).json(user);
+    if (user) _next(new CustomErrors.BadRequestError("User already exists"));
+    else {
+      user = await User.create(_req.body);
+      _res.status(StatusCodes.CREATED).json(user);
+    }
   }
 );
 
