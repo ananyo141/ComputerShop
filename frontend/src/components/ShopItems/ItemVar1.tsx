@@ -4,38 +4,31 @@ import { FaShoppingCart } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 import { Product } from "../../models/Product";
-import { CartItem, CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  product: Product;
-  cartItems: CartStorageObjectType;
-  onAmountChange: CallableFunction;
+  productId: string;
+  getProduct: (id: string) => Product;
+  setProductAmount: (id: string, amount: number) => void;
 };
 
-const ItemVar1 = ({ product, cartItems, onAmountChange }: Props) => {
-  // const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-  //   // Decrement the amount related to id
-  //   // Delete if reaches 0
-  //   // Guard against reaching negative number
-  //   if (!cartItems[product._id]) return;
-  //   cartItems[product._id].amount--;
-  //   if (cartItems[productId].amount === 0) delete cartItems[productId];
-  //   onAmountChange((_: CartStorageObjectType) => ({
-  //     ...cartItems,
-  //   }));
-  // };
-  // const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-  //   // Increment the amount related to id
-  //   // Guard against overflowing max-in-stock value
-  //   let product = cartItems[productId]
-  //     ? cartItems[productId]
-  //     : ({ amount: 0, isWishlisted: false } as CartItem);
-  //   product.amount++;
-  //   cartItems[productId] = product;
-  //   onAmountChange((_: CartStorageObjectType) => ({
-  //     ...cartItems,
-  //   }));
-  // };
+const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
+  const product = getProduct(productId);
+  if (!product)
+    return (
+      <div className="flex items-center justify-center">
+        <span className="text-xs font-medium">Product not found</span>
+      </div>
+    );
+
+  const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
+    setProductAmount(productId, (product.amount ?? 1) - 1);
+  };
+
+  const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
+    // Increment the amount related to id
+    // Guard against overflowing max-in-stock value
+    setProductAmount(productId, (product.amount ?? -1) + 1);
+  };
 
   return (
     <div className="mb-6 lg:mb-0">
@@ -74,14 +67,14 @@ const ItemVar1 = ({ product, cartItems, onAmountChange }: Props) => {
             </a>
             {/* Item Count */}
             <div className="flex w-28 scale-125 items-center justify-evenly rounded-full bg-gray-300 md:scale-105 xl:scale-110">
-              <div onClick={() => {}}>
+              <div onClick={onDecrement}>
                 <AiOutlineMinus />
               </div>
               <div className="flex items-center gap-2 rounded-full bg-white px-3 ">
                 <FaShoppingCart className="text-amber-700" />
-                <p>{0}</p>
+                <p>{product.amount}</p>
               </div>
-              <div onClick={() => {}}>
+              <div onClick={onIncrement}>
                 <AiOutlinePlus />
               </div>
             </div>

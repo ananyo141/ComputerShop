@@ -9,10 +9,10 @@ import { CartStorageObjectType } from "../models/CartItem";
 import NavItems from "../data/NavItems";
 
 type Props = {
-  cart: CartStorageObjectType;
+  cartAmount: number;
 };
 
-const Navbar = ({ cart }: Props) => {
+const Navbar = ({ cartAmount }: Props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between bg-gray-900 py-4 text-gray-200 shadow-lg">
       <div className="container-fluid flex w-full flex-wrap items-center justify-between px-6">
@@ -55,7 +55,7 @@ const Navbar = ({ cart }: Props) => {
           >
             <BsFillCartFill className="scale-125" />
             <span className="absolute top-0 left-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
-              {0}
+              {cartAmount}
             </span>
           </Link>
           <div className="dropdown relative">

@@ -8,11 +8,11 @@ import ShippingForm from "./ShippingForm";
 import Card from "./Card";
 
 import { Product } from "../../models/Product";
-import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  products: Product[];
-  cartItems: CartStorageObjectType;
+  cartItems: string[];
+  getProduct: (id: string) => Product;
+  setProductAmount: (id: string, amount: number) => void;
 };
 
 const Checkout = (props: Props) => {
@@ -34,8 +34,8 @@ const Checkout = (props: Props) => {
               <div className="mt-32 ">
                 <h1 className="text-xl font-medium">Shopping Cart</h1>
                 <CheckoutItems
-                  products={props.products}
                   cartItems={props.cartItems}
+                  getProduct={props.getProduct}
                 />
               </div>
             </div>

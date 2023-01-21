@@ -4,23 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 import { Product } from "../../models/Product";
-import { CartStorageObjectType } from "../../models/CartItem";
-
 import calculateTotal from "../../utils/CalculateTotal";
-
 import Tooltip from "../../components/Tooltip";
 
 type Props = {
-  products: Product[];
-  cartItems: CartStorageObjectType;
+  cartItems: string[];
+  getProduct: (id: string) => Product;
 };
 
-const Summary = ({ products, cartItems }: Props) => {
+const Summary = ({ cartItems, getProduct }: Props) => {
   const navigate = useNavigate();
   const [subtotal, shippingCost, tax, total] = calculateTotal(
-    products,
-    cartItems
+    cartItems,
+    getProduct
   );
+
   return (
     <div className="mx-auto flex min-w-fit flex-col rounded-xl bg-gray-100 p-8 lg:w-3/4">
       <h3 className="text-2xl font-bold text-gray-700">Order Summary</h3>

@@ -7,6 +7,8 @@ export interface Product {
   seller: string;
   desc: string;
   inStock: number;
+  amount?: number;
+  isWishlisted?: boolean;
 }
 
 // Converts JSON strings to/from Product arrays

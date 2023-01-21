@@ -5,25 +5,28 @@ import { useNavigate } from "react-router-dom";
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
 import calculateTotal from "../../utils/CalculateTotal";
 import { Product } from "../../models/Product";
-import { CartStorageObjectType } from "../../models/CartItem";
 
 type Props = {
-  products: Product[];
-  cartItems: CartStorageObjectType;
+  cartItems: string[];
+  getProduct: (id: string) => Product;
 };
 
-const CheckoutItems = ({ products, cartItems }: Props) => {
+const CheckoutItems = ({ cartItems, getProduct }: Props) => {
   const navigate = useNavigate();
   const [subtotal, shippingCost, tax, total] = calculateTotal(
-    products,
-    cartItems
+    cartItems,
+    getProduct
   );
 
   return (
     <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
-      {products.map((product: Product, i: number) => (
-        <ItemCheckoutVar key={i} product={product} cartItems={cartItems} />
+      {cartItems.map((productId: string, i: number) => (
+        <ItemCheckoutVar
+          key={i}
+          productId={productId}
+          getProduct={getProduct}
+        />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
         <div
