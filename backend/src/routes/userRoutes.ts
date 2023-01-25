@@ -28,24 +28,24 @@ export const userRouter = express.Router();
 // NOTE: User create route is not needed because it is handled by authRoutes
 userRouter.get("/", getUsers);
 userRouter
-  .route("/:id")
+  .route("/profile")
   .get(authenticateToken, getUserInfo)
   .patch(authenticateToken, patchUser)
   .delete(authenticateToken, deleteUser);
 
 // Cart Routes //
 userRouter
-  .route("/:id/cart")
+  .route("/cart")
   .get(authenticateToken, getUserCart)
   .post(authenticateToken, addUserCart);
 userRouter
-  .route("/:id/cart/:prod_id")
+  .route("/cart/:prod_id")
   .patch(authenticateToken, patchUserCart)
   .delete(authenticateToken, deleteUserCart);
 
 // Order Routes //
 userRouter
-  .route("/:id/orders")
+  .route("/orders")
   .get(authenticateToken, getUserOrders)
   .post(authenticateToken, addUserOrder);
-userRouter.route("/:id/orders/:order_id").get(authenticateToken, getUserOrder);
+userRouter.route("/orders/:order_id").get(authenticateToken, getUserOrder);

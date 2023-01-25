@@ -7,7 +7,7 @@ import asyncWrapper from "../utils/asyncWrapper";
 
 export const getUserCart = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const cart = await UserModel.findById(_req.params.id).select("cart");
+    const cart = await UserModel.findById(_req.user).select("cart");
     if (!cart) {
       _next(new CustomError.NotFoundError("User not found"));
     } else {
@@ -18,7 +18,7 @@ export const getUserCart = asyncWrapper(
 
 export const addUserCart = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const cart = await UserModel.findById(_req.params.id).select("cart");
+    const cart = await UserModel.findById(_req.user).select("cart");
     if (!cart) {
       _next(new CustomError.NotFoundError("User not found"));
     } else {
@@ -32,7 +32,7 @@ export const addUserCart = asyncWrapper(
 
 export const patchUserCart = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const userId = _req.params.id;
+    const userId = _req.user;
     const productId = _req.params.prod_id;
 
     let user = await UserModel.findById(userId).select("cart");
@@ -52,7 +52,7 @@ export const patchUserCart = asyncWrapper(
 
 export const deleteUserCart = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const userId = _req.params.id;
+    const userId = _req.user;
     const productId = _req.params.prod_id;
 
     let user = await UserModel.findById(userId).select("cart");

@@ -7,28 +7,29 @@
 
 ## Users
   **User Information**
+  <small>(Send access token in header)</small>
   1. `/api/v1/users`
      - _GET:_ Get all the users in database
-  2. `/api/v1/users/:id`
+  2. `/api/v1/users/profile`
      - _GET:_ Get the user info
      - _PATCH:_ Update the user
      - _DELETE:_ Delete the user
 
   **User Cart**
-  1. `/api/v1/users/:id/cart`
+  1. `/api/v1/users/cart`
      - _GET:_ Get cart contents of user
      - _POST:_ Add product to cart
 
-  2. `/api/v1/users/:id/cart/:prod_id`
+  2. `/api/v1/users/cart/:prod_id`
      - _PATCH:_ Update product in cart
      - _DELETE:_ Delete product from cart
 
   **User Orders**
-  1. `/api/v1/users/:id/orders`
+  1. `/api/v1/users/orders`
      - _GET:_ Get previous orders
      - _POST:_ Create new order
 
-  2. `/api/v1/users/:id/orders/:order_id`
+  2. `/api/v1/users/orders/:order_id`
      - _GET:_ Get previous order details
 
 ## Products

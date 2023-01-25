@@ -19,7 +19,7 @@ export const getUsers = asyncWrapper(
 
 export const getUserInfo = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.params.id);
+    const user = await UserModel.findById(_req.user);
     if (!user) {
       _next(new CustomError.NotFoundError("User not found"));
     } else {
@@ -30,7 +30,7 @@ export const getUserInfo = asyncWrapper(
 
 export const patchUser = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.params.id);
+    const user = await UserModel.findById(_req.user);
     if (!user) _next(new CustomError.NotFoundError("User not found"));
     else {
       user.set(_req.body);
@@ -42,7 +42,7 @@ export const patchUser = asyncWrapper(
 
 export const deleteUser = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.params.id);
+    const user = await UserModel.findById(_req.user);
     if (!user) _next(new CustomError.NotFoundError("User not found"));
     else {
       await user.delete();
