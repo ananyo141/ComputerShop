@@ -3,6 +3,8 @@
     "target": "es6",
     "module": "commonjs",
     "rootDir": "./src",
+    // add custom type extensions
+    "typeRoots": ["./src/types", "./node_modules/@types"],
     "noEmitOnError": true,
     "removeComments": true,
     "noImplicitAny": true,

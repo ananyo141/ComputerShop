@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker/locale/en";
 import ProductModel, { ProductType } from "../models/productModel";
-import { connectDB } from "../db/connectDB";
+import { connectDB } from "./connectDB";
 
 const createRandomProduct = (): ProductType => ({
   imgLink: faker.image.technics(640, 480, true),
@@ -16,10 +16,11 @@ const PRODUCTS: ProductType[] = Array.from({ length: 20 }, createRandomProduct);
 const generate = async () => {
   try {
     // connect to database
-    await connectDB();
+    const connection = await connectDB();
     await ProductModel.insertMany(PRODUCTS);
     console.log(PRODUCTS);
     console.info("Products generated successfully");
+    connection.disconnect();
   } catch (error) {
     console.error(error);
   }

@@ -1,5 +1,7 @@
 import express from "express";
 
+import { authenticateToken } from "../middleware/authenticateToken";
+
 import {
   getUsers,
   getUserInfo,
@@ -25,15 +27,25 @@ export const userRouter = express.Router();
 // User Routes //
 // NOTE: User create route is not needed because it is handled by authRoutes
 userRouter.get("/", getUsers);
-userRouter.route("/:id").get(getUserInfo).patch(patchUser).delete(deleteUser);
+userRouter
+  .route("/:id")
+  .get(authenticateToken, getUserInfo)
+  .patch(authenticateToken, patchUser)
+  .delete(authenticateToken, deleteUser);
 
 // Cart Routes //
-userRouter.route("/:id/cart").get(getUserCart).post(addUserCart);
+userRouter
+  .route("/:id/cart")
+  .get(authenticateToken, getUserCart)
+  .post(authenticateToken, addUserCart);
 userRouter
   .route("/:id/cart/:prod_id")
-  .patch(patchUserCart)
-  .delete(deleteUserCart);
+  .patch(authenticateToken, patchUserCart)
+  .delete(authenticateToken, deleteUserCart);
 
 // Order Routes //
-userRouter.route("/:id/orders").get(getUserOrders).post(addUserOrder);
-userRouter.route("/:id/orders/:order_id").get(getUserOrder);
+userRouter
+  .route("/:id/orders")
+  .get(authenticateToken, getUserOrders)
+  .post(authenticateToken, addUserOrder);
+userRouter.route("/:id/orders/:order_id").get(authenticateToken, getUserOrder);

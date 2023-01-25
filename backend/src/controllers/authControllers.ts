@@ -1,13 +1,34 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import jwt from "jsonwebtoken";
 
+import env from "../utils/environment";
 import User from "../models/userModel";
 import * as CustomErrors from "../errors";
 import asyncWrapper from "../utils/asyncWrapper";
 
 export const loginController = asyncWrapper(
-  async (_req: Request, _res: Response) => {
-    _res.status(StatusCodes.OK).json(_req.body);
+  async (_req: Request, _res: Response, _next: NextFunction) => {
+    const { email, password } = _req.body;
+    if (!email || !password)
+      _next(
+        new CustomErrors.BadRequestError("Please provide email and password")
+      );
+
+    const user = await User.findOne({ email: email });
+    if (!user)
+      _next(
+        new CustomErrors.NotFoundError("Invalid email or user does not exist")
+      );
+
+    // passwords match, return access token and refresh token
+    if (await user!.comparePassword(password, _next)) {
+      const accessToken = jwt.sign(user!.toJSON(), env.ACCESS_TOKEN_SECRET);
+      _res.status(StatusCodes.OK).json({ accessToken: accessToken });
+      // passwords do not match
+    } else {
+      _next(new CustomErrors.UnauthorizedError("Invalid password"));
+    }
   }
 );
 

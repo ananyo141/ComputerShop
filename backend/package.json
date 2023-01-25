@@ -8,12 +8,16 @@
     "genfakerdb": "ts-node ./src/utils/generateFakerProducts.ts"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.15",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.11.17",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3"
   },
   "devDependencies": {

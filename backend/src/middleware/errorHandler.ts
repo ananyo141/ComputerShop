@@ -10,5 +10,7 @@ export const errorHandler = (
   _next: NextFunction
 ) => {
   console.error(err);
-  return _res.status(err.statusCode).json({ message: err.message });
+  return _res
+    .status(err.statusCode)
+    .json({ success: false, message: err.message });
 };

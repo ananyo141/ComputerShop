@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-import path from "path";
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") });
+import env from "../utils/environment";
 
-export const MONGOURI = process.env.CONNECTIONSTR!;
+export const MONGOURI = env.CONNECTIONSTR!;
 
 export const connectDB = (
   mongoUri: string = MONGOURI
