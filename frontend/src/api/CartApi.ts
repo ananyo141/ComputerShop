@@ -72,5 +72,5 @@ export const getCart = async (): Promise<any> => {
   if (error) {
     throw error;
   }
-  return response.data;
+  return response.data.cart;
 };

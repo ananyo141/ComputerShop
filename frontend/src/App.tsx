@@ -1,6 +1,6 @@
 // https://www.daggala.com/when-to-use-the-usereducer-hook/
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -19,32 +19,52 @@ import { Product } from "./models/Product";
 import { getAllProducts } from "./api/ProductApi";
 import * as CartApi from "./api/CartApi";
 
-const productsArr: Product[] = await getAllProducts();
-// convert the products array to an object with id as key
-const products = productsArr.reduce((map: any, product: Product) => {
-  map[product._id] = product;
-  return map;
-}, {});
-
-const initialState = {
-  products: products,
-  cartItems: {},
-  wishlistItems: {},
-};
-
 const reducer = (state: any, action: any) => {
   switch (action.type) {
+    case "SET_PRODUCTS":
+      return { ...state, products: action.payload };
     case "SET_CART_ITEMS":
       return { ...state, cartItems: action.payload };
     case "SET_WISHLIST_ITEMS":
       return { ...state, wishlistItems: action.payload };
     default:
-      return state;
+      throw Error("Invalid action type");
   }
 };
 
 function App() {
+  const initialState = {
+    products: {},
+    cartItems: {},
+    wishlistItems: {},
+  };
+
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const refreshCart = async () => {
+      let cartArr = sessionStorage.getItem("accessToken")
+        ? await CartApi.getCart()
+        : [];
+      const fetchCart = cartArr.reduce((map: any, cart: any) => {
+        map[cart.product] = cart.amount;
+        return map;
+      }, {});
+      dispatch({ type: "SET_CART_ITEMS", payload: fetchCart });
+    };
+    const refreshProducts = async () => {
+      const productsArr: Product[] = await getAllProducts();
+
+      // convert the products array to an object with id as key
+      const products = productsArr.reduce((map: any, product: Product) => {
+        map[product._id] = product;
+        return map;
+      }, {});
+      dispatch({ type: "SET_PRODUCTS", payload: products });
+    };
+    refreshProducts();
+    refreshCart();
+  }, []);
 
   const _setCartItems = (cartItems: any) => {
     dispatch({ type: "SET_CART_ITEMS", payload: cartItems });
