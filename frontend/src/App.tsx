@@ -17,6 +17,7 @@ import Cart from "./pages/Cart";
 
 import { Product } from "./models/Product";
 import { getAllProducts } from "./api/ProductApi";
+import * as CartApi from "./api/CartApi";
 
 const productsArr: Product[] = await getAllProducts();
 // convert the products array to an object with id as key
@@ -63,12 +64,22 @@ function App() {
     return product;
   };
 
-  const setProductAmount = (id: string, amount: number) => {
+  const setProductAmount = async (id: string, amount: number) => {
     // Delete if reaches 0
     // Guard against reaching negative number
     const cart = { ...state.cartItems };
-    cart[id] = amount;
-    if (cart[id] <= 0) delete cart[id];
+    // if not in cart and amount is 0, do nothing
+    if (!cart[id] && amount <= 0) return;
+    if (amount <= 0) {
+      await CartApi.removeFromCart(id);
+      delete cart[id];
+    }
+    // otherwise, set amount
+    else {
+      const updateApi = cart[id] > 0 ? CartApi.updateCart : CartApi.addToCart;
+      await updateApi(id, amount);
+      cart[id] = amount;
+    }
     _setCartItems(cart);
   };
 

@@ -13,6 +13,7 @@ type Props = {
 
 const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
   const product = getProduct(productId);
+  const [amount, setAmount] = React.useState(product.amount ?? 0);
   if (!product)
     return (
       <div className="flex items-center justify-center">
@@ -21,13 +22,17 @@ const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
     );
 
   const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-    setProductAmount(productId, (product.amount ?? 1) - 1);
+    setAmount((amount) => (amount <= 0 ? 0 : amount - 1));
   };
 
   const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
     // Increment the amount related to id
     // Guard against overflowing max-in-stock value
-    setProductAmount(productId, (product.amount ?? -1) + 1);
+    setAmount((amount) => amount + 1);
+  };
+
+  const onAddToCart = (): void => {
+    setProductAmount(productId, amount);
   };
 
   return (
@@ -57,14 +62,14 @@ const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
           </p>
           <p className="mb-4 pb-2">{product.desc}</p>
           <div className="flex flex-wrap items-center justify-between gap-3 md:justify-center xl:gap-5">
-            <a
-              href="#!"
+            <button
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               className="inline-block rounded-full bg-blue-600 px-2 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg lg:px-3"
+              onClick={onAddToCart}
             >
               Add to cart
-            </a>
+            </button>
             {/* Item Count */}
             <div className="flex w-28 scale-125 items-center justify-evenly rounded-full bg-gray-300 md:scale-105 xl:scale-110">
               <div onClick={onDecrement}>
@@ -72,7 +77,7 @@ const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
               </div>
               <div className="flex items-center gap-2 rounded-full bg-white px-3 ">
                 <FaShoppingCart className="text-amber-700" />
-                <p>{product.amount}</p>
+                <p>{amount}</p>
               </div>
               <div onClick={onIncrement}>
                 <AiOutlinePlus />

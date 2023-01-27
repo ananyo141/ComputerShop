@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
-import { CartStorageObjectType } from "../models/CartItem";
-
 import NavItems from "../data/NavItems";
 
 type Props = {

@@ -26,7 +26,7 @@ const SignIn = (props: Props) => {
     event.preventDefault();
     try {
       const tokens = await login(email, password);
-      localStorage.accessToken = tokens.accessToken;
+      sessionStorage.setItem("accessToken", tokens.accessToken);
       setModal("Success", "You have successfully logged in!");
     } catch (error: any) {
       setModal("Error", error.response.data.message);

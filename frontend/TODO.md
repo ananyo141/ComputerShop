@@ -1,9 +1,10 @@
 ## TODOS
 
-- [ ] Use axios for requests
+- [x] Use axios for requests
 - [ ] Add highlight for current tab in navbar
 - [ ] Add wishlist feature
-- [ ] Implement useReducer for optimised state management
+- [x] Implement useReducer for optimised state management
+- [ ] Use cookies for saving tokens
 
 ### Home Page
 
@@ -23,24 +24,39 @@ Save two items at the top layer of app:
 1. products database, and
 2. list of cart items chosen
 
-- **Products: Non-Stateful**
+- **Products: Stateful**
   Backend Provides initial products database as
-  A JSON object of _id_ fields and _keys_:
+  A JSON array of objects with _id_:
+
+  ```
+  [
+    {
+      _id: string,
+      imgLink: string,
+      name: string,
+      price: number,
+      seller: string,
+      desc: string,
+      inStock: number
+    }
+  ]
+  ```
+
+  Converted to an object with id fields as keys:
 
   ```
   {
-    id: {
-        imgLink: string,
-        name: string,
-        price: number,
-        seller: string,
-        desc: string,
-        inStock: number
+    id1: {
+      imgLink: string,
+      name: string,
+      price: number,
+      seller: string,
+      desc: string,
+      inStock: number
     }
-  }
+  ]
   ```
 
-  We save it as a const array (non-state) in the top of the application stack.
   Fetch it first time the app loads.
 
 - **CartItems: Stateful**
@@ -48,12 +64,9 @@ Save two items at the top layer of app:
   required, also if wishlisted.
 
   ```
-  {
-    id: {
-      amount: number,
-      isWishlisted: boolean
-    }
-  }
+  { _id1: amount, _id2: amount }
   ```
 
   Render this object in the Cart page, with removal feature
+  Products, Cart and wishlistItems are part of a larger state object managed by
+  useReducer.
