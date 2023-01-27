@@ -50,7 +50,7 @@ const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
           <p className="mb-4 text-gray-500">
             <small>
               Price <u>${product.price}</u>
-              <a href="" className="ml-2 text-gray-900">
+              <a href="" className="ml-2 italic text-gray-900">
                 Sold by {product.seller}
               </a>
             </small>

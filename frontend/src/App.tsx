@@ -28,7 +28,7 @@ const products = productsArr.reduce((map: any, product: Product) => {
 const initialState = {
   products: products,
   cartItems: {},
-  wishlistItems: [],
+  wishlistItems: {},
 };
 
 const reducer = (state: any, action: any) => {
@@ -49,7 +49,7 @@ function App() {
     dispatch({ type: "SET_CART_ITEMS", payload: cartItems });
   };
 
-  // const setWishlistItems = (wishlistItems: any) => {
+  // const _setWishlistItems = (wishlistItems: any) => {
   //   dispatch({ type: "SET_WISHLIST_ITEMS", payload: wishlistItems });
   // };
 
