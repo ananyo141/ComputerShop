@@ -72,5 +72,11 @@ export const getCart = async (): Promise<any> => {
   if (error) {
     throw error;
   }
-  return response.data.cart;
+  const cartArr = response.data.cart;
+  // convert cart array to an object with id as key
+  const cartObj = cartArr.reduce((map: any, cart: any) => {
+    map[cart.product] = cart.amount;
+    return map;
+  }, {});
+  return cartObj;
 };

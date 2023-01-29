@@ -42,28 +42,19 @@ function App() {
 
   useEffect(() => {
     const refreshCart = async () => {
-      let cartArr = sessionStorage.getItem("accessToken")
+      let fetchCart = sessionStorage.getItem("accessToken")
         ? await CartApi.getCart()
-        : [];
-      const fetchCart = cartArr.reduce((map: any, cart: any) => {
-        map[cart.product] = cart.amount;
-        return map;
-      }, {});
+        : {};
       dispatch({ type: "SET_CART_ITEMS", payload: fetchCart });
     };
     const refreshProducts = async () => {
-      const productsArr: Product[] = await getAllProducts();
-
-      // convert the products array to an object with id as key
-      const products = productsArr.reduce((map: any, product: Product) => {
-        map[product._id] = product;
-        return map;
-      }, {});
+      const products = await getAllProducts();
       dispatch({ type: "SET_PRODUCTS", payload: products });
     };
     refreshProducts();
     refreshCart();
-  }, []);
+    // refresh cart items on login
+  }, [sessionStorage.getItem("accessToken")]);
 
   const _setCartItems = (cartItems: any) => {
     dispatch({ type: "SET_CART_ITEMS", payload: cartItems });
@@ -96,10 +87,18 @@ function App() {
     // otherwise, set amount
     else {
       const updateApi = cart[id] > 0 ? CartApi.updateCart : CartApi.addToCart;
-      await updateApi(id, amount);
-      cart[id] = amount;
+      try {
+        await updateApi(id, amount);
+        cart[id] = amount;
+        _setCartItems(cart);
+      } catch (err: any) {
+        const message =
+          err.response.status === 401
+            ? "You must be logged in to add to your cart"
+            : err.message;
+        setModal("Error", message);
+      }
     }
-    _setCartItems(cart);
   };
 
   const [modalOpen, setModalOpen] = React.useState(false);
