@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter } from "react-icons/fa";
 
 import signup from "../../assets/signup.svg";
 import { register } from "../../api/AuthApi";
-import Modal from "../../components/Modal";
+import { ModalContext } from "../../components/Modal";
 
 type Props = {};
 
@@ -12,15 +12,7 @@ const SignUp = (props: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [modalTitle, setModalTitle] = React.useState("");
-  const [modalText, setModalText] = React.useState("");
-  const setModal = (title: string, text: string, isOpen: boolean = true) => {
-    setModalOpen(isOpen);
-    setModalTitle(title);
-    setModalText(text);
-  };
-
+  const setModal = React.useContext(ModalContext);
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -33,13 +25,6 @@ const SignUp = (props: Props) => {
 
   return (
     <section className="h-fit lg:h-screen">
-      {modalOpen ? (
-        <Modal
-          title={modalTitle}
-          text={modalText}
-          onClose={() => setModalOpen(false)}
-        />
-      ) : null}
       <div className="container flex h-full flex-col px-6 py-12">
         <h1 className="mx-auto mb-10 pl-2 text-4xl font-light tracking-tight lg:hidden">
           Create an account

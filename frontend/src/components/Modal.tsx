@@ -6,6 +6,8 @@ type Props = {
   onClose: CallableFunction;
 };
 
+export const ModalContext = React.createContext((...args: any) => {});
+
 const Modal = ({ title, text, onClose }: Props) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50">

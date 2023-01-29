@@ -4,8 +4,8 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 import signin from "../../assets/signin.webp";
 
-import Modal from "../../components/Modal";
 import { login } from "../../api/AuthApi";
+import { ModalContext } from "../../components/Modal";
 
 type Props = {};
 
@@ -13,14 +13,7 @@ const SignIn = (props: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [modalTitle, setModalTitle] = React.useState("");
-  const [modalText, setModalText] = React.useState("");
-  const setModal = (title: string, text: string, isOpen: boolean = true) => {
-    setModalOpen(isOpen);
-    setModalTitle(title);
-    setModalText(text);
-  };
+  const setModal = React.useContext(ModalContext);
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,13 +28,6 @@ const SignIn = (props: Props) => {
 
   return (
     <section className="h-screen">
-      {modalOpen ? (
-        <Modal
-          title={modalTitle}
-          text={modalText}
-          onClose={() => setModalOpen(false)}
-        />
-      ) : null}
       <div className="h-full px-6 text-gray-800">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between xl:justify-center">
           <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">

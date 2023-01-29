@@ -1,10 +1,9 @@
-// https://www.daggala.com/when-to-use-the-usereducer-hook/
-
-import { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Modal, { ModalContext } from "./components/Modal";
 
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
@@ -103,51 +102,69 @@ function App() {
     _setCartItems(cart);
   };
 
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalTitle, setModalTitle] = React.useState("");
+  const [modalText, setModalText] = React.useState("");
+  const setModal = (title: string, text: string, isOpen: boolean = true) => {
+    setModalOpen(isOpen);
+    setModalTitle(title);
+    setModalText(text);
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
-      <BrowserRouter>
-        <Navbar cartAmount={Object.keys(state.cartItems).length} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                products={Object.keys(state.products)}
-                getProduct={getProductState}
-                setProductAmount={setProductAmount}
-              />
-            }
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-                cartItems={Object.keys(state.cartItems)}
-                getProduct={getProductState}
-                setProductAmount={setProductAmount}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cartItems={Object.keys(state.cartItems)}
-                setProductAmount={setProductAmount}
-                getProduct={getProductState}
-                // wishlistItems={state.wishListItems}
-                // setWishListItems={setWishListItems}
-              />
-            }
-          />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      {modalOpen ? (
+        <Modal
+          title={modalTitle}
+          text={modalText}
+          onClose={() => setModalOpen(false)}
+        />
+      ) : null}
+      <ModalContext.Provider value={setModal}>
+        <BrowserRouter>
+          <Navbar cartAmount={Object.keys(state.cartItems).length} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  products={Object.keys(state.products)}
+                  getProduct={getProductState}
+                  setProductAmount={setProductAmount}
+                />
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  cartItems={Object.keys(state.cartItems)}
+                  getProduct={getProductState}
+                  setProductAmount={setProductAmount}
+                />
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cartItems={Object.keys(state.cartItems)}
+                  setProductAmount={setProductAmount}
+                  getProduct={getProductState}
+                  // wishlistItems={state.wishListItems}
+                  // setWishListItems={setWishListItems}
+                />
+              }
+            />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ModalContext.Provider>
     </div>
   );
 }
