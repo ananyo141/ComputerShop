@@ -19,7 +19,7 @@ const Cart = ({ cartItems, getProduct, setProductAmount }: Props) => {
     <EmptyCart />
   ) : (
     <section className="p-5">
-      <h1 className="mt-5 mb-10 text-4xl font-thin">Shopping Cart</h1>
+      <h1 className="mt-16 mb-10 text-4xl font-thin">Shopping Cart</h1>
       {/* Contains cart items and order summary horizontally */}
       <div className="container mx-auto flex flex-col justify-between lg:flex-row">
         {/* Contains cart items */}

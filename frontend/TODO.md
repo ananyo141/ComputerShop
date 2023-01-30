@@ -5,6 +5,12 @@
 - [ ] Add wishlist feature
 - [x] Implement useReducer for optimised state management
 - [ ] Use cookies for saving tokens
+- [ ] Add logout
+
+## FIXME
+- [ ] Footer overlapping on short content
+- [ ] State doesn't update on few reloads
+- [x] Page scroll to top on route / page change
 
 ### Home Page
 

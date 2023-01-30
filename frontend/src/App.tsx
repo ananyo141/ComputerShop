@@ -17,6 +17,7 @@ import Cart from "./pages/Cart";
 import { Product } from "./models/Product";
 import { getAllProducts } from "./api/ProductApi";
 import * as CartApi from "./api/CartApi";
+import ScrollToTop from "./components/ScrollToTop";
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -162,6 +163,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />
+          <ScrollToTop />
         </BrowserRouter>
       </ModalContext.Provider>
     </div>

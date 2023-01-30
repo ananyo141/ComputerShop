@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 import signin from "../../assets/signin.webp";
@@ -12,6 +12,7 @@ type Props = {};
 const SignIn = (props: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigator = useNavigate();
 
   const setModal = React.useContext(ModalContext);
 
@@ -21,6 +22,10 @@ const SignIn = (props: Props) => {
       const tokens = await login(email, password);
       sessionStorage.setItem("accessToken", tokens.accessToken);
       setModal("Success", "You have successfully logged in!");
+      setTimeout(() => {
+        navigator("/"); // navigate to home page
+        setModal("", "", false);
+      }, 2000);
     } catch (error: any) {
       setModal("Error", error.response.data.message);
     }
