@@ -4,7 +4,7 @@
   "main": "app.ts",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./src/app.ts",
+    "dev": "nodemon ./src/app.ts",
     "genfakerdb": "ts-node ./src/utils/generateFakerProducts.ts"
   },
   "dependencies": {
