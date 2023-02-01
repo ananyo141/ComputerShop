@@ -2,19 +2,16 @@
 
 import React from "react";
 
-import { Product } from "../../models/Product";
-
 import ItemVar2 from "../../components/ShopItems/ItemVar2";
 import Summary from "./Summary";
 import EmptyCart from "./EmptyCart";
 
-type Props = {
-  cartItems: string[];
-  getProduct: (id: string) => Product;
-  setProductAmount: (id: string, amount: number) => void;
-};
+import { useCartState } from "../../hooks";
 
-const Cart = ({ cartItems, getProduct, setProductAmount }: Props) => {
+type Props = {};
+
+const Cart = (props: Props) => {
+  const cartItems: string[] = useCartState().getAllCartId();
   return cartItems.length === 0 ? (
     <EmptyCart />
   ) : (
@@ -26,19 +23,14 @@ const Cart = ({ cartItems, getProduct, setProductAmount }: Props) => {
         <div className="mb-12 flex flex-col items-center gap-2 lg:w-2/3 lg:items-start lg:gap-9 ">
           {cartItems.map((productId: string, i: number) => (
             <>
-              <ItemVar2
-                key={i}
-                productId={productId}
-                getProduct={getProduct}
-                setProductAmount={setProductAmount}
-              />
+              <ItemVar2 key={i} productId={productId} />
               <hr className="lg:w-full" />
             </>
           ))}
         </div>
         {/* Contains order summary */}
         <div className="w-full xl:w-1/2">
-          <Summary cartItems={cartItems} getProduct={getProduct} />
+          <Summary />
         </div>
       </div>
     </section>

@@ -7,13 +7,7 @@ import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
 import Card from "./Card";
 
-import { Product } from "../../models/Product";
-
-type Props = {
-  cartItems: string[];
-  getProduct: (id: string) => Product;
-  setProductAmount: (id: string, amount: number) => void;
-};
+type Props = {};
 
 const Checkout = (props: Props) => {
   return (
@@ -33,10 +27,7 @@ const Checkout = (props: Props) => {
               </div>
               <div className="mt-32 ">
                 <h1 className="text-xl font-medium">Shopping Cart</h1>
-                <CheckoutItems
-                  cartItems={props.cartItems}
-                  getProduct={props.getProduct}
-                />
+                <CheckoutItems />
               </div>
             </div>
           </div>

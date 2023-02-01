@@ -1,29 +1,29 @@
 import React from "react";
 
-import { Product } from "../../models/Product";
+import { useProductState, useCartState } from "../../hooks";
 
 type Props = {
   productId: string;
-  getProduct: (id: string) => Product;
-  setProductAmount: (id: string, amount: number) => void;
 };
 
-const ItemVar2 = ({ productId, getProduct, setProductAmount }: Props) => {
+const ItemVar2 = ({ productId }: Props) => {
+  const { getProduct } = useProductState();
+  const { setCartAmt } = useCartState();
   const product = getProduct(productId);
 
   const onDelete = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Delete the item from cart
-    setProductAmount(productId, 0);
+    setCartAmt(productId, 0);
   };
 
   const onDecrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    setProductAmount(productId, (product.amount ?? 1) - 1);
+    setCartAmt(productId, (product.amount ?? 1) - 1);
   };
 
   const onIncrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Increment the amount related to id
     // Guard against overflowing max-in-stock value
-    setProductAmount(productId, (product.amount ?? -1) + 1);
+    setCartAmt(productId, (product.amount ?? -1) + 1);
   };
 
   return (

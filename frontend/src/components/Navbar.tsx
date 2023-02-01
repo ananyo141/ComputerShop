@@ -6,16 +6,19 @@ import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
 import NavItems from "../data/NavItems";
 
-type Props = {
-  cartAmount: number;
-};
+import { useCartState } from "../hooks/cartHooks";
 
-const Navbar = ({ cartAmount }: Props) => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+type Props = {};
 
-  React.useEffect(() => {
-    setIsLoggedIn(sessionStorage.getItem("accessToken") !== "");
-  }, [sessionStorage.getItem("accessToken")]);
+const Navbar = (props: Props) => {
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  // React.useEffect(() => {
+  //   setIsLoggedIn(sessionStorage.getItem("accessToken") !== "");
+  // }, [sessionStorage.getItem("accessToken")]);
+
+  const cartAmount = useCartState().getAllCartId().length;
+  const isLoggedIn: boolean = true;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between bg-gray-900 py-4 text-gray-200 shadow-lg">
@@ -123,10 +126,7 @@ const Navbar = ({ cartAmount }: Props) => {
                   <Link
                     className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                     to=""
-                    onClick={() => {
-                      sessionStorage.setItem("accessToken", "");
-                      setIsLoggedIn(false);
-                    }}
+                    onClick={() => {}}
                   >
                     Logout
                   </Link>

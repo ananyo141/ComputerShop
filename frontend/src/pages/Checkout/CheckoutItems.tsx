@@ -4,29 +4,30 @@ import { useNavigate } from "react-router-dom";
 
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
 import calculateTotal from "../../utils/CalculateTotal";
-import { Product } from "../../models/Product";
 
-type Props = {
-  cartItems: string[];
-  getProduct: (id: string) => Product;
-};
+import { useCartState } from "../../hooks";
 
-const CheckoutItems = ({ cartItems, getProduct }: Props) => {
+type Props = {};
+
+const CheckoutItems = (props: Props) => {
   const navigate = useNavigate();
-  const [subtotal, shippingCost, tax, total] = calculateTotal(
-    cartItems,
-    getProduct
-  );
+  const cartItems = useCartState().getAllCartId();
+
+  // const [subtotal, shippingCost, tax, total] = calculateTotal();
+  const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
+  // const cartProducts = Object.keys.(cartItems).reduce((acc: Product[], id) => {
+  //   const product = cartItems[id];
+  //   if (product) {
+  //     acc.push(product);
+  //   }
+  //   return acc;
+  // }, []);
 
   return (
     <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
       {cartItems.map((productId: string, i: number) => (
-        <ItemCheckoutVar
-          key={i}
-          productId={productId}
-          getProduct={getProduct}
-        />
+        <ItemCheckoutVar key={i} productId={productId} />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
         <div

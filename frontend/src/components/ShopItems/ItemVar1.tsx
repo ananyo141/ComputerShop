@@ -3,17 +3,19 @@ import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-import { Product } from "../../models/Product";
+import { useProductState, useCartState } from "../../hooks";
 
 type Props = {
   productId: string;
-  getProduct: (id: string) => Product;
-  setProductAmount: (id: string, amount: number) => void;
 };
 
-const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
+const ItemVar1 = ({ productId }: Props) => {
+  const { getProduct } = useProductState();
+  const { setCartAmt } = useCartState();
   const product = getProduct(productId);
+
   const [amount, setAmount] = React.useState(product.amount ?? 0);
+
   if (!product)
     return (
       <div className="flex items-center justify-center">
@@ -32,7 +34,7 @@ const ItemVar1 = ({ productId, getProduct, setProductAmount }: Props) => {
   };
 
   const onAddToCart = (): void => {
-    setProductAmount(productId, amount);
+    setCartAmt(product._id, amount);
   };
 
   return (

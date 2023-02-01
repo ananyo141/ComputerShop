@@ -1,14 +1,13 @@
 import React from "react";
 
-import { Product } from "../../models/Product";
+import { useProductState } from "../../hooks";
 
 type Props = {
   productId: string;
-  getProduct: (id: string) => Product;
 };
 
-const ItemCheckoutVar = ({ productId, getProduct }: Props) => {
-  const product = getProduct(productId);
+const ItemCheckoutVar = ({ productId }: Props) => {
+  const product = useProductState().getProduct(productId);
   return (
     <div className="mt-6 flex items-center justify-between border-t pt-6">
       <div className="flex items-center">

@@ -7,17 +7,11 @@ import { Product } from "../../models/Product";
 import calculateTotal from "../../utils/CalculateTotal";
 import Tooltip from "../../components/Tooltip";
 
-type Props = {
-  cartItems: string[];
-  getProduct: (id: string) => Product;
-};
+type Props = {};
 
-const Summary = ({ cartItems, getProduct }: Props) => {
+const Summary = (props: Props) => {
   const navigate = useNavigate();
-  const [subtotal, shippingCost, tax, total] = calculateTotal(
-    cartItems,
-    getProduct
-  );
+  const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
 
   return (
     <div className="mx-auto flex min-w-fit flex-col rounded-xl bg-gray-100 p-8 lg:w-3/4">
