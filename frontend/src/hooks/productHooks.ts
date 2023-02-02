@@ -5,6 +5,8 @@ import { productActions } from "../state";
 
 import { Product } from "../models/Product";
 
+import deepCopy from "../utils/deepCopy";
+
 export const useProductState = () => {
   const [products, cartItems] = useSelector((state: any) => [
     state.products,
@@ -14,9 +16,9 @@ export const useProductState = () => {
   const { setProductsObj } = bindActionCreators(productActions, useDispatch());
 
   const getProduct = (id: string): Product => {
-    const product = products[id];
+    const product = deepCopy(products[id]);
     // todo: if product is not found in local state, fetch from server
-    // product.amount = cartItems[id] ?? 0;
+    product.amount = cartItems[id] ?? 0;
     return product;
   };
 
