@@ -3,6 +3,19 @@ export type NavItemType = {
   path: string;
 };
 
-const NavItems: NavItemType[] = [];
+const NavItems: NavItemType[] = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "About",
+    path: "/about",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+];
 
 export default NavItems;
