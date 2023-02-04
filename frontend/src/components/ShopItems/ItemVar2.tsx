@@ -1,29 +1,30 @@
 import React from "react";
 
-import { useProductState, useCartState } from "../../hooks";
+import { useCartItem } from "../../hooks/useCartState";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import * as CartActions from "../../state/features/cart/cartSlice";
 
 type Props = {
   productId: string;
 };
 
 const ItemVar2 = ({ productId }: Props) => {
-  const { getProduct } = useProductState();
-  const { setCartAmt } = useCartState();
-  const product = getProduct(productId);
+  const dispatch = useAppDispatch();
+  const product = useCartItem(productId);
 
   const onDelete = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Delete the item from cart
-    setCartAmt(productId, 0);
+    dispatch(CartActions.removeFromCart(productId));
   };
 
   const onDecrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    setCartAmt(productId, (product.amount ?? 1) - 1);
+    dispatch(CartActions.subtractFromCart({ id: productId, amount: 1 }));
   };
 
   const onIncrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Increment the amount related to id
     // Guard against overflowing max-in-stock value
-    setCartAmt(productId, (product.amount ?? -1) + 1);
+    dispatch(CartActions.addToCart({ id: productId, amount: 1 }));
   };
 
   return (

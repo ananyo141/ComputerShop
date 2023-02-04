@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
 import calculateTotal from "../../utils/CalculateTotal";
-
-import { useCartState } from "../../hooks";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 
 type Props = {};
 
 const CheckoutItems = (props: Props) => {
   const navigate = useNavigate();
-  const cartItems = useCartState().getAllCartId();
+  const cartItems = useAppSelector((state) => state.cart.items);
 
   // const [subtotal, shippingCost, tax, total] = calculateTotal();
   const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
@@ -26,8 +25,8 @@ const CheckoutItems = (props: Props) => {
   return (
     <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
-      {cartItems.map((productId: string, i: number) => (
-        <ItemCheckoutVar key={i} productId={productId} />
+      {Object.keys(cartItems).map((productId: string) => (
+        <ItemCheckoutVar key={productId} productId={productId} />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
         <div

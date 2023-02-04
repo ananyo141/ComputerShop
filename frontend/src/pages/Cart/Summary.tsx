@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
-import { Product } from "../../models/Product";
 import calculateTotal from "../../utils/CalculateTotal";
 import Tooltip from "../../components/Tooltip";
 

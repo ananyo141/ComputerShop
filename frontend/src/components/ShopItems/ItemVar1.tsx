@@ -1,18 +1,18 @@
 import React from "react";
-
 import { FaShoppingCart } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-import { useProductState, useCartState } from "../../hooks";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { useCartItem } from "../../hooks/useCartState";
+import { setCartAmount } from "../../state/features/cart/cartSlice";
 
 type Props = {
   productId: string;
 };
 
 const ItemVar1 = ({ productId }: Props) => {
-  const { getProduct } = useProductState();
-  const { setCartAmt } = useCartState();
-  const product = getProduct(productId);
+  const dispatch = useAppDispatch();
+  const product = useCartItem(productId);
 
   const [amount, setAmount] = React.useState(product.amount ?? 0);
 
@@ -24,17 +24,17 @@ const ItemVar1 = ({ productId }: Props) => {
     );
 
   const onDecrement = (_: React.MouseEvent<HTMLDivElement>): void => {
-    setAmount((amount) => (amount <= 0 ? 0 : amount - 1));
+    setAmount((amount: number) => (amount <= 0 ? 0 : amount - 1));
   };
 
   const onIncrement = (_: React.MouseEvent<HTMLDivElement>): void => {
     // Increment the amount related to id
     // Guard against overflowing max-in-stock value
-    setAmount((amount) => amount + 1);
+    setAmount((amount: number) => amount + 1);
   };
 
   const onAddToCart = (): void => {
-    setCartAmt(product._id, amount);
+    dispatch(setCartAmount({ id: product._id, amount: amount }));
   };
 
   return (

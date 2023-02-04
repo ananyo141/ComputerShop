@@ -6,7 +6,7 @@ import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
 import NavItems from "../data/NavItems";
 
-import { useCartState } from "../hooks/cartHooks";
+import { useAppSelector } from "../hooks/useReduxHooks";
 
 type Props = {};
 
@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
   //   setIsLoggedIn(sessionStorage.getItem("accessToken") !== "");
   // }, [sessionStorage.getItem("accessToken")]);
 
-  const cartAmount = useCartState().getAllCartId().length;
+  const cartAmount = useAppSelector((state) => state.cart.amount);
   const isLoggedIn: boolean = true;
 
   return (

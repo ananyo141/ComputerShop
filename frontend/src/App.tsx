@@ -15,28 +15,16 @@ import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 
-import * as CartApi from "./api/CartApi";
-import * as ProductApi from "./api/ProductApi";
-
-import { useProductState, useCartState } from "./hooks";
+import { useAppDispatch } from "./hooks/useReduxHooks";
+import { getCartItems } from "./state/features/cart/cartSlice";
+import { getProducts } from "./state/features/products/productSlice";
 
 function App() {
-  const { setProducts } = useProductState();
-  const { setCart } = useCartState();
+  const dispatch = useAppDispatch();
+
   React.useEffect(() => {
-    const refreshCart = async () => {
-      let fetchCart = sessionStorage.getItem("accessToken")
-        ? await CartApi.getCart()
-        : {};
-      setCart(fetchCart);
-    };
-    const refreshProducts = async () => {
-      const products = await ProductApi.getAllProducts();
-      setProducts(products);
-    };
-    refreshProducts();
-    refreshCart();
-    // refresh cart items on login
+    dispatch(getProducts());
+    dispatch(getCartItems());
   }, [sessionStorage.getItem("accessToken")]);
 
   const [modalOpen, setModalOpen] = React.useState(false);
