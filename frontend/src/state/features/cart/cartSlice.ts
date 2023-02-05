@@ -61,6 +61,10 @@ const cartSlice = createSlice({
       .addCase(getCartItems.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
+        state.amount = (Object.values(action.payload) as number[]).reduce(
+          (acc, val) => acc + val,
+          0
+        );
       })
       .addCase(getCartItems.rejected, (state, action) => {
         state.isLoading = false;
