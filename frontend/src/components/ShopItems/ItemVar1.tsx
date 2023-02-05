@@ -4,7 +4,7 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 import { useAppDispatch } from "../../hooks/useReduxHooks";
 import { useCartItem } from "../../hooks/useCartState";
-import { setCartAmount } from "../../state/features/cart/cartSlice";
+import { setCartApi } from "../../state/features/cart/cartSlice";
 
 type Props = {
   productId: string;
@@ -34,7 +34,7 @@ const ItemVar1 = ({ productId }: Props) => {
   };
 
   const onAddToCart = (): void => {
-    dispatch(setCartAmount({ id: product._id, amount: amount }));
+    dispatch(setCartApi({ id: product._id, amount: amount }));
   };
 
   return (

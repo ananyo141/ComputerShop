@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CartType, CartItemPayload, CartState } from "./cartTypes";
-import { getCartItems } from "./getCartItems";
+import { getCartApi } from "./getCartThunk";
+import { setCartApi } from "./setCartThunk";
 
 export const initialState: CartState = {
   items: {},
@@ -53,12 +54,13 @@ const cartSlice = createSlice({
       state.amount = 0;
     },
   },
+  // use api calls in thunks and update state in reducers
   extraReducers: (builder) => {
     builder
-      .addCase(getCartItems.pending, (state) => {
+      .addCase(getCartApi.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCartItems.fulfilled, (state, action) => {
+      .addCase(getCartApi.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
         state.amount = (Object.values(action.payload) as number[]).reduce(
@@ -66,10 +68,18 @@ const cartSlice = createSlice({
           0
         );
       })
-      .addCase(getCartItems.rejected, (state, action) => {
+      .addCase(getCartApi.rejected, (state, action) => {
         state.isLoading = false;
         // FIXME: What is serialized error?
         state.error = action.error as Error;
+      });
+
+    builder
+      .addCase(setCartApi.fulfilled, (state, action) => {
+        return _setCartAmount(state, action.payload.id, action.payload.amount);
+      })
+      .addCase(setCartApi.rejected, (state, action) => {
+        // TODO: set error modal here
       });
   },
 });
@@ -83,5 +93,5 @@ export const {
   clearCart,
 } = cartSlice.actions;
 
-export { getCartItems };
+export { getCartApi, setCartApi };
 export default cartSlice.reducer;

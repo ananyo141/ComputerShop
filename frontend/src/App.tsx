@@ -16,7 +16,7 @@ import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 
 import { useAppDispatch } from "./hooks/useReduxHooks";
-import { getCartItems } from "./state/features/cart/cartSlice";
+import { getCartApi } from "./state/features/cart/cartSlice";
 import { getProducts } from "./state/features/products/productSlice";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(getProducts());
-    dispatch(getCartItems());
+    dispatch(getCartApi());
   }, [sessionStorage.getItem("accessToken")]);
 
   const [modalOpen, setModalOpen] = React.useState(false);

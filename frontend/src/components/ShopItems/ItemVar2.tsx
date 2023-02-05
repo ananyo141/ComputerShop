@@ -14,17 +14,21 @@ const ItemVar2 = ({ productId }: Props) => {
 
   const onDelete = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Delete the item from cart
-    dispatch(CartActions.removeFromCart(productId));
+    dispatch(CartActions.setCartApi({ id: productId, amount: 0 }));
   };
 
   const onDecrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
-    dispatch(CartActions.subtractFromCart({ id: productId, amount: 1 }));
+    dispatch(
+      CartActions.setCartApi({ id: productId, amount: product.amount! - 1 })
+    );
   };
 
   const onIncrement = (_: React.MouseEvent<HTMLButtonElement>): void => {
     // Increment the amount related to id
     // Guard against overflowing max-in-stock value
-    dispatch(CartActions.addToCart({ id: productId, amount: 1 }));
+    dispatch(
+      CartActions.setCartApi({ id: productId, amount: product.amount! + 1 })
+    );
   };
 
   return (
