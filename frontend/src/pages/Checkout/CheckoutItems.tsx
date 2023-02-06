@@ -3,7 +3,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import ItemCheckoutVar from "../../components/ShopItems/ItemCheckoutVar";
-import calculateTotal from "../../utils/CalculateTotal";
 import { useAppSelector } from "../../hooks/useReduxHooks";
 
 type Props = {};
@@ -12,15 +11,8 @@ const CheckoutItems = (props: Props) => {
   const navigate = useNavigate();
   const cartItems = useAppSelector((state) => state.cart.items);
 
-  // const [subtotal, shippingCost, tax, total] = calculateTotal();
+  // FIXME: Fetch total from backend
   const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
-  // const cartProducts = Object.keys.(cartItems).reduce((acc: Product[], id) => {
-  //   const product = cartItems[id];
-  //   if (product) {
-  //     acc.push(product);
-  //   }
-  //   return acc;
-  // }, []);
 
   return (
     <div className="max-w-4xl p-5">

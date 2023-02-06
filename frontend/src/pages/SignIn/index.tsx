@@ -1,38 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
+import { ErrorModal } from "../../components/Modals/";
 import signin from "../../assets/signin.webp";
-
 import { login } from "../../api/AuthApi";
-import { ModalContext } from "../../components/Modal";
 
 type Props = {};
 
 const SignIn = (props: Props) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const navigator = useNavigate();
 
-  const setModal = React.useContext(ModalContext);
+  // const setModal = React.useContext(ModalContext);
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const tokens = await login(email, password);
       sessionStorage.setItem("accessToken", tokens.accessToken);
-      setModal("Success", "You have successfully logged in!");
+      // setModal("Success", "You have successfully logged in!");
       setTimeout(() => {
         navigator("/"); // navigate to home page
-        setModal("", "", false);
       }, 2000);
     } catch (error: any) {
-      setModal("Error", error.response.data.message);
+      setIsOpen(true);
     }
   };
 
   return (
     <section className="h-screen">
+      <ErrorModal
+        isOpen={isOpen}
+        text="Successfully logged in!"
+        onClose={() => setIsOpen(false)}
+      />
       <div className="h-full px-6 text-gray-800">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between xl:justify-center">
           <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">

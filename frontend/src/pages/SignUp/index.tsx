@@ -3,7 +3,6 @@ import { FaFacebookF, FaTwitter } from "react-icons/fa";
 
 import signup from "../../assets/signup.svg";
 import { register } from "../../api/AuthApi";
-import { ModalContext } from "../../components/Modal";
 
 type Props = {};
 
@@ -12,14 +11,14 @@ const SignUp = (props: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const setModal = React.useContext(ModalContext);
+  // const setModal = React.useContext(ModalContext);
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       await register(name, email, password);
-      setModal("Success", "You have successfully registered!");
+      // setModal("Success", "You have successfully registered!");
     } catch (error: any) {
-      setModal("Error", error.response.data.message);
+      // setModal("Error", error.response.data.message);
     }
   };
 
