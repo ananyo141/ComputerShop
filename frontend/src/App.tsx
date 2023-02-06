@@ -27,7 +27,7 @@ function App() {
   }, [sessionStorage.getItem("accessToken")]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -40,6 +40,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
+        <div className="pb-[170px]"></div>
         <Footer />
         <ScrollToTop />
       </BrowserRouter>
