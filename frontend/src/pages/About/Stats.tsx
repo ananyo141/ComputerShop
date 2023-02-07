@@ -17,10 +17,7 @@ const Stats = (props: Props) => {
         <div className="container mx-auto text-center lg:text-left xl:px-32">
           <div className="grid items-center lg:grid-cols-2">
             <div className="mb-12 lg:mb-0">
-              <div
-                className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-lg backdrop-blur-2xl md:px-12 lg:-mr-14"
-                // style="backdrop-filter: blur(30px); z-index: 1"
-              >
+              <div className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-lg backdrop-blur-2xl md:px-12 lg:-mr-14">
                 <h2 className="display-5 mb-4 text-3xl font-bold">
                   Why is it so great?
                 </h2>

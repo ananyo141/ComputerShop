@@ -15,12 +15,14 @@ type Props = {
 
 // Generate modals for different types
 // All use the same design
+// IMPORTANT: Tailwind cannot deduce partial class names sent as arguments, and
+// removes them from final bundle, safe to use inline styling
 const _generateModal = (
   initialTitle: string,
   image: string,
   buttonColor: string,
   bgColor: string = "white",
-  textColor: string = "gray-700",
+  textColor: string = "rgb(55 65 81)",
   buttonText: string = "Continue"
 ) => {
   return ({ title = initialTitle, text, isOpen, onClose }: Props) => {
@@ -29,7 +31,8 @@ const _generateModal = (
       <div className="fixed inset-0 bg-black bg-opacity-80">
         <div className="flex h-full flex-col items-center justify-center">
           <div
-            className={`relative flex h-1/2 w-1/2 flex-col items-center justify-evenly rounded-xl text-${textColor} bg-${bgColor} lg:w-1/4`}
+            className="relative flex h-1/2 w-1/2 flex-col items-center justify-evenly rounded-xl lg:w-1/4"
+            style={{ color: textColor, backgroundColor: bgColor }}
           >
             <RxCross2
               className="absolute top-0 right-0 mr-5 mt-5 cursor-pointer text-2xl"
@@ -41,12 +44,13 @@ const _generateModal = (
             </h3>
             <img
               src={image}
-              alt="info image"
+              alt="modal image"
               className="hidden w-1/6 lg:block lg:w-1/4"
             />
             <button
               onClick={() => onClose()}
-              className={`rounded-full bg-${buttonColor} px-16 py-2 text-xl text-white`}
+              className="rounded-full px-16 py-2 text-xl text-white"
+              style={{ backgroundColor: buttonColor }}
             >
               {buttonText}
             </button>
@@ -58,13 +62,21 @@ const _generateModal = (
   };
 };
 
-export const SuccessModal = _generateModal("Success!", checkimg, "green-700");
-export const InfoModal = _generateModal("Hey there!", infoimg, "blue-500");
+export const SuccessModal = _generateModal(
+  "Success!",
+  checkimg,
+  "rgb(21 128 61)" // green-700
+);
+export const InfoModal = _generateModal(
+  "Hey there!",
+  infoimg,
+  "rgb(59 130 246)" // blue-500
+);
 export const ErrorModal = _generateModal(
   "Face-plant!",
   errorimg,
-  "rose-700",
-  "rose-600",
-  "gray-200",
+  "rgb(190 18 60)", // rose-700
+  "rgb(225 29 72)", // rose-600
+  "rgb(229 231 235)", // gray-200
   "Try Again"
 );

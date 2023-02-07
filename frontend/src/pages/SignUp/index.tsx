@@ -1,29 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 
 import signup from "../../assets/signup.svg";
-import { register } from "../../api/AuthApi";
+import { ErrorModal, SuccessModal } from "../../components/Modals/";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { registerUser } from "../../state/features/login/loginSlice";
 
 type Props = {};
 
 const SignUp = (props: Props) => {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const navigator = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
   // const setModal = React.useContext(ModalContext);
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      await register(name, email, password);
-      // setModal("Success", "You have successfully registered!");
+      await dispatch(registerUser({ name, email, password })).unwrap();
+      setIsSuccessOpen(true);
+      setTimeout(() => {
+        navigator("/"); // navigate to home page
+      }, 2000);
     } catch (error: any) {
-      // setModal("Error", error.response.data.message);
+      setIsErrorOpen(true);
     }
   };
 
   return (
     <section className="h-fit lg:h-screen">
+      <ErrorModal
+        isOpen={isErrorOpen}
+        text="User already exists"
+        onClose={() => setIsErrorOpen(false)}
+      />
+      <SuccessModal
+        isOpen={isSuccessOpen}
+        text="You have successfully registered!"
+        onClose={() => setIsSuccessOpen(false)}
+      />
       <div className="container flex h-full flex-col px-6 py-12">
         <h1 className="mx-auto mb-10 pl-2 text-4xl font-light tracking-tight lg:hidden">
           Create an account

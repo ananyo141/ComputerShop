@@ -14,17 +14,22 @@ import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 
-import { useAppDispatch } from "./hooks/useReduxHooks";
-import { getCartApi } from "./state/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
+import { getCartApi, clearCart } from "./state/features/cart/cartSlice";
 import { getProducts } from "./state/features/products/productSlice";
+import { loadLoginInfo } from "./state/features/login/loginSlice";
 
 function App() {
+  const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     dispatch(getProducts());
-    dispatch(getCartApi());
-  }, [sessionStorage.getItem("accessToken")]);
+    dispatch(loadLoginInfo())
+      .unwrap()
+      .then(() => dispatch(getCartApi()))
+      .catch(() => dispatch(clearCart()));
+  }, [isLoggedIn]);
 
   return (
     <div className="flex flex-col">

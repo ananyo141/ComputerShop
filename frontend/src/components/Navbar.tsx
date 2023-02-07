@@ -1,27 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 
 import NavItems from "../data/NavItems";
-
-import { useAppSelector } from "../hooks/useReduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
+import { logout } from "../state/features/login/loginSlice";
+import { InfoModal } from "./Modals/";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   setIsLoggedIn(sessionStorage.getItem("accessToken") !== "");
-  // }, [sessionStorage.getItem("accessToken")]);
-
   const cartAmount = useAppSelector((state) => state.cart.amount);
-  const isLoggedIn: boolean = true;
+  const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn);
+  const dispatch = useAppDispatch();
+
+  const navigator = useNavigate();
+  const [isOpen, setOpen] = useState(false);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    setOpen(true);
+    setTimeout(() => {
+      navigator("/signin");
+    }, 300);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between bg-gray-900 py-4 text-gray-200 shadow-lg">
+      <InfoModal
+        isOpen={isOpen}
+        text="You have successfully logged out!"
+        onClose={() => setOpen(false)}
+      />
       <div className="container-fluid flex w-full flex-wrap items-center justify-between px-6">
         <button
           className="navbar-toggler border-0 bg-transparent py-2 px-2.5 text-gray-200 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0"
@@ -44,7 +55,7 @@ const Navbar = (props: Props) => {
           {/* Left links */}
           <ul className="navbar-nav list-style-none mr-auto flex flex-col pl-0">
             {NavItems.map((obj, i) => (
-              <li key={i} className="nav-item opacity-70 p-2">
+              <li key={i} className="nav-item p-2 opacity-70">
                 <Link to={obj.path}>{obj.name}</Link>
               </li>
             ))}
@@ -126,7 +137,7 @@ const Navbar = (props: Props) => {
                   <Link
                     className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
                     to=""
-                    onClick={() => {}}
+                    onClick={logoutHandler}
                   >
                     Logout
                   </Link>

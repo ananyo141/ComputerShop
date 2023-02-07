@@ -23,7 +23,9 @@ export const getUserInfo = asyncWrapper(
     if (!user) {
       _next(new CustomError.NotFoundError("User not found"));
     } else {
-      _res.status(StatusCodes.OK).json(user);
+      _res
+        .status(StatusCodes.OK)
+        .json({ name: user.name, email: user.email, id: user._id });
     }
   }
 );

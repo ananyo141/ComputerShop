@@ -16,6 +16,3 @@ export default function Tooltip({ children, text, isLink = false }: Props) {
     </div>
   );
 }
-
-// <Tooltip className="relative inline-block border-b border-dotted border-black hidden w-32 bg-black text-white text-center rounded-md py-1 px-0 absolute z-[1] hover:visible">
-// <Tooltip_text className="visible hidden w-32 bg-black text-white text-center rounded-md py-1 px-0 absolute z-[1]" />

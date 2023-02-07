@@ -2,40 +2,46 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
-import { ErrorModal } from "../../components/Modals/";
 import signin from "../../assets/signin.webp";
-import { login } from "../../api/AuthApi";
+import { ErrorModal, SuccessModal } from "../../components/Modals/";
+import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { loginUser } from "../../state/features/login/loginSlice";
 
 type Props = {};
 
 const SignIn = (props: Props) => {
+  const navigator = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const navigator = useNavigate();
-
-  // const setModal = React.useContext(ModalContext);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const tokens = await login(email, password);
-      sessionStorage.setItem("accessToken", tokens.accessToken);
-      // setModal("Success", "You have successfully logged in!");
+      await dispatch(loginUser({ email, password })).unwrap();
+      setIsSuccessOpen(true);
       setTimeout(() => {
         navigator("/"); // navigate to home page
-      }, 2000);
-    } catch (error: any) {
-      setIsOpen(true);
+      }, 1250);
+    } catch (err: any) {
+      setIsErrorOpen(true);
     }
   };
 
   return (
     <section className="h-screen">
       <ErrorModal
-        isOpen={isOpen}
-        text="Successfully logged in!"
-        onClose={() => setIsOpen(false)}
+        isOpen={isErrorOpen}
+        text="Invalid email or password"
+        onClose={() => setIsErrorOpen(false)}
+      />
+      <SuccessModal
+        isOpen={isSuccessOpen}
+        text="You have successfully logged in!"
+        onClose={() => setIsSuccessOpen(false)}
       />
       <div className="h-full px-6 text-gray-800">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between xl:justify-center">
