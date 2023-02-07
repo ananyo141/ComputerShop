@@ -18,6 +18,7 @@ const ItemVar1 = ({ productId }: Props) => {
     state.login.accessToken,
     state.login.isLoggedIn,
   ]);
+  const cart = useAppSelector((state) => state.cart.items);
 
   const [amount, setAmount] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -48,7 +49,9 @@ const ItemVar1 = ({ productId }: Props) => {
   };
 
   const onAddToCart = (): void => {
-    if (amount === 0) {
+    // if item is not in cart and amount given is 0
+    // don't dispatch api call, but show modal
+    if (!cart[productId] && amount === 0) {
       setIsOpen(true);
       return;
     }

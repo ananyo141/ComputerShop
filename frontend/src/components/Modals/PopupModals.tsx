@@ -28,7 +28,7 @@ const _generateModal = (
   return ({ title = initialTitle, text, isOpen, onClose }: Props) => {
     if (!isOpen) return null;
     return ReactDom.createPortal(
-      <div className="fixed inset-0 bg-black bg-opacity-80">
+      <div className="fixed z-50 inset-0 bg-black bg-opacity-80">
         <div className="flex h-full flex-col items-center justify-center">
           <div
             className="relative flex h-1/2 w-1/2 flex-col items-center justify-evenly rounded-xl lg:w-1/4"
