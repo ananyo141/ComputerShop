@@ -7,7 +7,8 @@ const CARTURL = USERSURL + "/cart";
 
 export const addToCart = async (
   productId: string,
-  amount: number
+  amount: number,
+  accessToken: string
 ): Promise<any> => {
   const [error, response] = await resolve(
     axios.post(
@@ -15,7 +16,7 @@ export const addToCart = async (
       { product: productId, amount: amount },
       {
         headers: {
-          authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${accessToken}`,
         },
       }
     )
@@ -28,7 +29,8 @@ export const addToCart = async (
 
 export const updateCart = async (
   productId: string,
-  amount: number
+  amount: number,
+  accessToken: string
 ): Promise<any> => {
   const [error, response] = await resolve(
     axios.patch(
@@ -36,7 +38,7 @@ export const updateCart = async (
       { amount: amount },
       {
         headers: {
-          authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+          authorization: `Bearer ${accessToken}`,
         },
       }
     )
@@ -47,11 +49,14 @@ export const updateCart = async (
   return response.data;
 };
 
-export const removeFromCart = async (productId: string): Promise<any> => {
+export const removeFromCart = async (
+  productId: string,
+  accessToken: string
+): Promise<any> => {
   const [error, response] = await resolve(
     axios.delete(`${CARTURL}/${productId}`, {
       headers: {
-        authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${accessToken}`,
       },
     })
   );
@@ -61,11 +66,11 @@ export const removeFromCart = async (productId: string): Promise<any> => {
   return response.data;
 };
 
-export const getCart = async (): Promise<any> => {
+export const getCart = async (accessToken: string): Promise<any> => {
   const [error, response] = await resolve(
     axios.get(`${CARTURL}`, {
       headers: {
-        authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${accessToken}`,
       },
     })
   );

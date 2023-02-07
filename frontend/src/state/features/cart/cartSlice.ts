@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CartType, CartItemPayload, CartState } from "./cartTypes";
-import { getCartApi } from "./getCartThunk";
-import { setCartApi } from "./setCartThunk";
+import { getCartApi, setCartApi } from "./cartThunks";
 
 export const initialState: CartState = {
   items: {},
@@ -74,13 +73,9 @@ const cartSlice = createSlice({
         state.error = action.error as Error;
       });
 
-    builder
-      .addCase(setCartApi.fulfilled, (state, action) => {
-        return _setCartAmount(state, action.payload.id, action.payload.amount);
-      })
-      .addCase(setCartApi.rejected, (state, action) => {
-        // TODO: set error modal here
-      });
+    builder.addCase(setCartApi.fulfilled, (state, action) => {
+      return _setCartAmount(state, action.payload.id, action.payload.amount);
+    });
   },
 });
 

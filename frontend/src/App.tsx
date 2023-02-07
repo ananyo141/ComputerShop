@@ -20,14 +20,17 @@ import { getProducts } from "./state/features/products/productSlice";
 import { loadLoginInfo } from "./state/features/login/loginSlice";
 
 function App() {
-  const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn);
+  const [isLoggedIn, accessToken] = useAppSelector((state) => [
+    state.login.isLoggedIn,
+    state.login.accessToken,
+  ]);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     dispatch(getProducts());
     dispatch(loadLoginInfo())
       .unwrap()
-      .then(() => dispatch(getCartApi()))
+      .then(() => dispatch(getCartApi(accessToken!)))
       .catch(() => dispatch(clearCart()));
   }, [isLoggedIn]);
 

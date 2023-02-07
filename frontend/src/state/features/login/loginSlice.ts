@@ -70,12 +70,16 @@ const loginSlice = createSlice({
       });
 
     // Load login state after refresh
-    builder.addCase(loadLoginInfo.fulfilled, (state, action) => {
-      state.isLoggedIn = true;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-      state.accessToken = action.payload.accessToken;
-    });
+    builder
+      .addCase(loadLoginInfo.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
+        state.accessToken = action.payload.accessToken;
+      })
+      .addCase(loadLoginInfo.rejected, (_) => {
+        return initialState;
+      });
   },
 });
 

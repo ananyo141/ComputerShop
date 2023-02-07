@@ -39,6 +39,7 @@ export const loadLoginInfo = createAsyncThunk(
     if (!accessToken) return thunkAPI.rejectWithValue("No access token");
     const [error, response] = await resolve(AuthApi.getUserInfo(accessToken));
     if (error) return thunkAPI.rejectWithValue(error.message);
+    response.accessToken = accessToken;
     return response;
   }
 );
