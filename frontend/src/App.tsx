@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp";
 import NoPage from "./pages/NoPage";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
 
 import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
 import { getCartApi, clearCart } from "./state/features/cart/cartSlice";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
         <div className="pb-[170px]"></div>

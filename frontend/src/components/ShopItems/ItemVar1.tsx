@@ -53,6 +53,8 @@ const ItemVar1 = ({ productId }: Props) => {
   };
 
   const onAddToCart = (): void => {
+    // if not amount not changed, do nothing
+    if (amount && product.amount === amount) return;
     // if item is not in cart and amount given is 0
     // don't dispatch api call, but show modal
     if (!isLoggedIn) {
