@@ -36,6 +36,6 @@ export const setCartApi = createAsyncThunk(
       );
     }
     if (error) return thunkAPI.rejectWithValue(error.message);
-    return item;
+    return { ...item, ...response };
   }
 );

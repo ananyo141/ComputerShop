@@ -83,5 +83,8 @@ export const getCart = async (accessToken: string): Promise<any> => {
     map[cart.product] = cart.amount;
     return map;
   }, {});
-  return cartObj;
+  return {
+    ...response.data,
+    cart: cartObj,
+  };
 };

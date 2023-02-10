@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
-import calculateTotal from "../../utils/CalculateTotal";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 import Tooltip from "../../components/Tooltip";
 
 type Props = {};
 
 const Summary = (props: Props) => {
   const navigate = useNavigate();
-  const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
+  const cart = useAppSelector((state) => state.cart);
+  const { subtotal, shippingCost, tax, total } = cart;
 
   return (
     <div className="mx-auto flex min-w-fit flex-col rounded-xl bg-gray-100 p-8 lg:w-3/4">

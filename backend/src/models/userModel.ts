@@ -12,6 +12,7 @@ export interface UserDocument extends Document {
   email: string;
   password: string;
   cart: mongoose.Types.Array<any>;
+  cartTotal: number;
   wishlist: mongoose.Types.Array<any>;
   orders: mongoose.Types.Array<any>;
   role: string;
@@ -51,6 +52,10 @@ const userSchema = new mongoose.Schema({
   cart: {
     type: [CartSchema],
     default: [],
+  },
+  cartTotal: {
+    type: Number,
+    default: 0,
   },
   orders: {
     type: [OrderSchema],

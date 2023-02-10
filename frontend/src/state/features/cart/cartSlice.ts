@@ -6,6 +6,10 @@ import { getCartApi, setCartApi } from "./cartThunks";
 export const initialState: CartState = {
   items: {},
   amount: 0,
+  subtotal: 0,
+  shippingCost: 0,
+  tax: 0,
+  total: 0,
   isLoading: false,
   error: null,
 };
@@ -61,11 +65,15 @@ const cartSlice = createSlice({
       })
       .addCase(getCartApi.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
-        state.amount = (Object.values(action.payload) as number[]).reduce(
+        state.items = action.payload.cart;
+        state.amount = (Object.values(action.payload.cart) as number[]).reduce(
           (acc, val) => acc + val,
           0
         );
+        state.subtotal = action.payload.subtotal;
+        state.shippingCost = action.payload.shippingCost;
+        state.tax = action.payload.tax;
+        state.total = action.payload.total;
       })
       .addCase(getCartApi.rejected, (state, action) => {
         state.isLoading = false;
@@ -74,7 +82,16 @@ const cartSlice = createSlice({
       });
 
     builder.addCase(setCartApi.fulfilled, (state, action) => {
-      return _setCartAmount(state, action.payload.id, action.payload.amount);
+      const newState = _setCartAmount(
+        state,
+        action.payload.id,
+        action.payload.amount
+      );
+      newState.subtotal = action.payload.subtotal;
+      newState.shippingCost = action.payload.shippingCost;
+      newState.tax = action.payload.tax;
+      newState.total = action.payload.total;
+      return newState;
     });
   },
 });

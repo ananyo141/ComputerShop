@@ -9,6 +9,10 @@ export type CartItemPayloadWithToken = {
 export interface CartState {
   items: CartType;
   amount: number;
+  subtotal: number;
+  shippingCost: number;
+  tax: number;
+  total: number;
   isLoading: boolean;
   error: Error | null;
 }

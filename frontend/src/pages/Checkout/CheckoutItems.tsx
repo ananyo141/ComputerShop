@@ -9,15 +9,14 @@ type Props = {};
 
 const CheckoutItems = (props: Props) => {
   const navigate = useNavigate();
-  const cartItems = useAppSelector((state) => state.cart.items);
-
-  // FIXME: Fetch total from backend
-  const [subtotal, shippingCost, tax, total] = [0, 0, 0, 0];
+  const { items, subtotal, shippingCost, tax, total } = useAppSelector(
+    (state) => state.cart
+  );
 
   return (
     <div className="max-w-4xl p-5">
       {/* Cart Items Here */}
-      {Object.keys(cartItems).map((productId: string) => (
+      {Object.keys(items).map((productId: string) => (
         <ItemCheckoutVar key={productId} productId={productId} />
       ))}
       <div className="mt-6 flex items-center justify-between border-t pt-6">
