@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { BiShowAlt, BiHide } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 import shoppingBag from "../../assets/shopping_bag.png";
@@ -108,12 +108,22 @@ const ItemVar1 = ({ productId }: Props) => {
           </p>
           <p className="pb-6">
             {description}
-            <small
-              className="ml-2 cursor-pointer italic text-blue-800 underline"
+            <p
+              className="cursor-pointer text-sm italic text-blue-800 underline"
               onClick={() => setReadMore(!readMore)}
             >
-              ...Read {readMore ? "less" : "more"}
-            </small>
+              {readMore ? (
+                <span>
+                  Hide
+                  <BiHide className="ml-1 inline" />
+                </span>
+              ) : (
+                <span>
+                  Read More
+                  <BiShowAlt className="ml-1 inline" />
+                </span>
+              )}
+            </p>
           </p>
         </div>
       </div>
@@ -122,11 +132,11 @@ const ItemVar1 = ({ productId }: Props) => {
           <div className="flex justify-center gap-8 xl:justify-between">
             <img src={shoppingBag} className="w-8 xl:w-10" />
             <div className="flex items-center gap-8 rounded-xl border-2 xl:px-5">
-              <div onClick={onDecrement}>
+              <div className="cursor-pointer" onClick={onDecrement}>
                 <AiOutlineMinus />
               </div>
               <span>{amount}</span>
-              <div onClick={onIncrement}>
+              <div className="cursor-pointer" onClick={onIncrement}>
                 <AiOutlinePlus />
               </div>
             </div>
