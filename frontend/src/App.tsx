@@ -30,7 +30,7 @@ function App() {
     dispatch(getProducts());
     dispatch(loadLoginInfo())
       .unwrap()
-      .then(() => dispatch(getCartApi(accessToken!)))
+      .then(() => (accessToken ? dispatch(getCartApi(accessToken)) : null))
       .catch(() => dispatch(clearCart()));
   }, [isLoggedIn]);
 

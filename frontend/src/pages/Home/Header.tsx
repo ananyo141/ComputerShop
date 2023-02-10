@@ -29,7 +29,7 @@ const Header = (props: Props) => {
                   <span>build your next pc!</span>
                 </h1>
                 <a
-                  className="mr-1.5 inline-block rounded-full border-2 border-white px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                  className="mr-1.5 bg-white bg-opacity-5 backdrop-blur inline-block rounded-full border-2 border-white px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   href="#!"
@@ -38,7 +38,7 @@ const Header = (props: Props) => {
                   Start Shopping
                 </a>
                 <a
-                  className="inline-block rounded-full border-2 border-transparent bg-transparent px-7 py-3 text-sm font-medium uppercase leading-snug text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0"
+                  className="bg-white inline-block rounded-full border-2 border-transparent bg-transparent px-7 py-3 text-sm uppercase leading-snug bg-opacity-80 backdrop-blur font-bold text-gray-700 transition duration-150 ease-in-out focus:outline-none focus:ring-0"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   href="#!"

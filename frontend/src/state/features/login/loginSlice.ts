@@ -71,7 +71,11 @@ const loginSlice = createSlice({
 
     // Load login state after refresh
     builder
+      .addCase(loadLoginInfo.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(loadLoginInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.isLoggedIn = true;
         state.name = action.payload.name;
         state.email = action.payload.email;
