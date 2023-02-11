@@ -20,6 +20,7 @@ import {
   getUserOrders,
   addUserOrder,
   getUserOrder,
+  deleteUserOrder,
 } from "../controllers/orderControllers";
 
 export const userRouter = express.Router();
@@ -48,4 +49,7 @@ userRouter
   .route("/orders")
   .get(authenticateToken, getUserOrders)
   .post(authenticateToken, addUserOrder);
-userRouter.route("/orders/:order_id").get(authenticateToken, getUserOrder);
+userRouter
+  .route("/orders/:order_id")
+  .get(authenticateToken, getUserOrder)
+  .delete(authenticateToken, deleteUserOrder);
