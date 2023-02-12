@@ -26,7 +26,7 @@ const Checkout = (props: Props) => {
                 </div>
               </div>
               <div className="mt-32 ">
-                <h1 className="text-xl font-medium">Shopping Cart</h1>
+                <h1 className="text-xl font-medium">Cart</h1>
                 <CheckoutItems />
               </div>
             </div>

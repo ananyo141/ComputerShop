@@ -45,20 +45,6 @@ const ShippingForm = (props: Props) => {
         </div>
       </div>
       <div className="mt-4">
-        <label htmlFor="company" className="block  font-medium text-gray-700">
-          Company
-        </label>
-        <div className="mt-1">
-          <input
-            type="text"
-            name="company"
-            id="company"
-            autoComplete="organization"
-            className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
-          />
-        </div>
-      </div>
-      <div className="mt-4">
         <label htmlFor="country" className="block  font-medium text-gray-700">
           Country / Region
         </label>

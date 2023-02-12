@@ -98,7 +98,7 @@ const Navbar = (props: Props) => {
                 <li>
                   <Link
                     className="dropdown-item block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-gray-700 hover:bg-gray-100"
-                    to=""
+                    to="/orders"
                   >
                     Previous Orders
                   </Link>
