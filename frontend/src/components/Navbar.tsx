@@ -6,6 +6,7 @@ import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
 import NavItems from "../data/NavItems";
 import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
 import { logout } from "../state/features/login/loginSlice";
+import { clearNotification } from "../state/features/orders/orderSlice";
 import { InfoModal } from "./Modals/";
 
 type Props = {};
@@ -13,6 +14,9 @@ type Props = {};
 const Navbar = (props: Props) => {
   const cartAmount = useAppSelector((state) => state.cart.amount);
   const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn);
+  const newNotifications = useAppSelector(
+    (state) => state.orders.newOrderNotifications
+  );
   const dispatch = useAppDispatch();
 
   const navigator = useNavigate();
@@ -24,6 +28,10 @@ const Navbar = (props: Props) => {
     setTimeout(() => {
       navigator("/signin");
     }, 300);
+  };
+
+  const notificationHandler = () => {
+    dispatch(clearNotification());
   };
 
   return (
@@ -86,10 +94,15 @@ const Navbar = (props: Props) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <BsFillBellFill className="scale-125" />
-                <span className="absolute -mt-2.5 ml-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
-                  1
-                </span>
+                <BsFillBellFill
+                  onClick={notificationHandler}
+                  className="scale-125"
+                />
+                {newNotifications > 0 && (
+                  <span className="absolute -mt-2.5 ml-2 rounded-full bg-red-700 py-0 px-1.5 text-xs text-white">
+                    {newNotifications}
+                  </span>
+                )}
               </a>
               <ul
                 className="dropdown-menu absolute left-auto right-0 z-50 float-left m-0 mt-1 hidden min-w-max list-none rounded-lg border-none bg-white bg-clip-padding py-2 text-left text-base shadow-lg"

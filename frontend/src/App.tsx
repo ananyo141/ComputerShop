@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 
 import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
 import { getCartApi, clearCart } from "./state/features/cart/cartSlice";
+import { getOrdersApi, clearOrders } from "./state/features/orders/orderSlice";
 import { getProducts } from "./state/features/products/productSlice";
 import { loadLoginInfo } from "./state/features/login/loginSlice";
 
@@ -32,8 +33,16 @@ function App() {
     dispatch(getProducts());
     dispatch(loadLoginInfo())
       .unwrap()
-      .then(() => (accessToken ? dispatch(getCartApi(accessToken)) : null))
-      .catch(() => dispatch(clearCart()));
+      .then(() => {
+        if (accessToken) {
+          dispatch(getCartApi(accessToken));
+          dispatch(getOrdersApi(accessToken));
+        }
+      })
+      .catch(() => {
+        dispatch(clearCart());
+        dispatch(clearOrders());
+      });
   }, [isLoggedIn]);
 
   return (

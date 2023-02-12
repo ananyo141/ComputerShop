@@ -108,8 +108,8 @@ const ItemVar1 = ({ productId }: Props) => {
           </p>
           <p className="pb-6">
             {description}
-            <p
-              className="cursor-pointer text-sm italic text-blue-800 underline"
+            <span
+              className="block cursor-pointer text-sm italic text-blue-800 underline"
               onClick={() => setReadMore(!readMore)}
             >
               {readMore ? (
@@ -123,7 +123,7 @@ const ItemVar1 = ({ productId }: Props) => {
                   <BiShowAlt className="ml-1 inline" />
                 </span>
               )}
-            </p>
+            </span>
           </p>
         </div>
       </div>

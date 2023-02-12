@@ -6,6 +6,12 @@ import React, { useState } from "react";
 import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
 import Card from "./Card";
+import {
+  createOrderApi,
+  increaseNotification,
+} from "../../state/features/orders/orderSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
+import { ErrorModal, SuccessModal, InfoModal } from "../../components/Modals";
 
 type Props = {};
 
@@ -17,14 +23,60 @@ const Checkout = (props: Props) => {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [country, setCountry] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(0);
 
-  const onCheckout = () => {
-    console.log("Checkout");
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+
+  const accessToken = useAppSelector((state) => state.login.accessToken);
+  const dispatch = useAppDispatch();
+
+  const onCheckout = async () => {
+    const shippingDetails = {
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      phone,
+    };
+    const formElem = document.getElementById(
+      "shipping-form"
+    ) as HTMLFormElement;
+    if (!formElem?.reportValidity()) return setShowInfoModal(true);
+    if (accessToken) {
+      try {
+        await dispatch(
+          createOrderApi({ accessToken, shippingDetails })
+        ).unwrap();
+        setShowSuccessModal(true);
+        dispatch(increaseNotification());
+      } catch (err: any) {
+        setShowErrorModal(true);
+      }
+    }
   };
 
   return (
-    <div className="bg-gray-300">
+    <div className="-mb-52 bg-gray-300">
+      <InfoModal
+        isOpen={showInfoModal}
+        onClose={setShowInfoModal}
+        text="Please fill all the required fields"
+      />
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={setShowSuccessModal}
+        text="Order placed successfully"
+      />
+      <ErrorModal
+        isOpen={showErrorModal}
+        onClose={setShowErrorModal}
+        text="Something went wrong, please try again."
+      />
       <div className="sm:py-1 md:py-12">
         <div className="container mx-auto rounded-lg bg-gray-100 shadow-lg">
           <div className="md:flex">

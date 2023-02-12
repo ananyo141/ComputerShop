@@ -15,8 +15,12 @@ type Props = {
 
 const ShippingForm = (props: Props) => {
   const navigate = useNavigate();
+  props.setCountry("India"); // hack to set default value
   return (
-    <form className="md:text-md mx-auto flex max-w-4xl flex-col gap-4 text-lg">
+    <form
+      id="shipping-form"
+      className="md:text-md mx-auto flex max-w-4xl flex-col gap-4 text-lg"
+    >
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
           <label
@@ -70,9 +74,9 @@ const ShippingForm = (props: Props) => {
             required={true}
             className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
           >
-            <option>United States</option>
-            <option>Canada</option>
-            <option>Mexico</option>
+            <option value="India">India</option>
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
           </select>
         </div>
       </div>

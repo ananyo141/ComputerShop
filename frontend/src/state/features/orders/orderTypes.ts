@@ -30,6 +30,8 @@ export interface OrderType {
   shippingDetails: ShippingDetails;
   orderItems: OrderItemType[];
   payment: PaymentType;
+  _id: string;
+  createdAt: string;
 }
 
 export interface OrderState {

@@ -8,7 +8,7 @@ type Props = {
 
 const Card = ({ onCheckout }: Props) => {
   return (
-    <div className="overflow-visible max-w-sm rounded bg-gray-800 p-5">
+    <div className="max-w-sm overflow-visible rounded bg-gray-800 p-5">
       <span className="block pb-3 text-xl font-medium text-gray-100">
         Card Details
       </span>
@@ -79,7 +79,7 @@ const Card = ({ onCheckout }: Props) => {
       </div>
       <button
         onClick={() => onCheckout()}
-        className="h-12 w-full rounded bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
+        className="h-12 w-full rounded bg-blue-500 text-white duration-100 hover:bg-blue-600 focus:outline-none active:scale-90"
       >
         Check Out
       </button>
