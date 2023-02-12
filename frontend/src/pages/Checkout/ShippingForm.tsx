@@ -2,7 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 
-type Props = {};
+type Props = {
+  setFirstName: CallableFunction;
+  setLastName: CallableFunction;
+  setAddress: CallableFunction;
+  setCity: CallableFunction;
+  setState: CallableFunction;
+  setZip: CallableFunction;
+  setCountry: CallableFunction;
+  setPhone: CallableFunction;
+};
 
 const ShippingForm = (props: Props) => {
   const navigate = useNavigate();
@@ -22,6 +31,8 @@ const ShippingForm = (props: Props) => {
               name="first_name"
               id="first_name"
               autoComplete="given-name"
+              onChange={(e) => props.setFirstName(e.target.value)}
+              required={true}
               className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
             />
           </div>
@@ -39,6 +50,8 @@ const ShippingForm = (props: Props) => {
               name="last_name"
               id="last_name"
               autoComplete="family-name"
+              onChange={(e) => props.setLastName(e.target.value)}
+              required={true}
               className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
             />
           </div>
@@ -53,6 +66,8 @@ const ShippingForm = (props: Props) => {
             id="country"
             name="country"
             autoComplete="country"
+            onChange={(e) => props.setCountry(e.target.value)}
+            required={true}
             className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
           >
             <option>United States</option>
@@ -74,6 +89,8 @@ const ShippingForm = (props: Props) => {
             name="street_address"
             id="street_address"
             autoComplete="street-address"
+            onChange={(e) => props.setAddress(e.target.value)}
+            required={true}
             className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
           />
         </div>
@@ -88,6 +105,7 @@ const ShippingForm = (props: Props) => {
               type="text"
               name="city"
               id="city"
+              onChange={(e) => props.setCity(e.target.value)}
               className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
             />
           </div>
@@ -101,6 +119,7 @@ const ShippingForm = (props: Props) => {
               type="text"
               name="state"
               id="state"
+              onChange={(e) => props.setState(e.target.value)}
               className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
             />
           </div>
@@ -115,6 +134,8 @@ const ShippingForm = (props: Props) => {
               name="zip"
               id="zip"
               autoComplete="postal-code"
+              onChange={(e) => props.setZip(e.target.value)}
+              required={true}
               className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
             />
           </div>
@@ -130,6 +151,8 @@ const ShippingForm = (props: Props) => {
             name="phone"
             id="phone"
             autoComplete="tel"
+            onChange={(e) => props.setPhone(e.target.value)}
+            required={true}
             className="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm "
           />
         </div>

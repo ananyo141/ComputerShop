@@ -2,9 +2,11 @@ import React from "react";
 
 import mastercardlogo from "../../assets/mastercardlogo.png";
 
-type Props = {};
+type Props = {
+  onCheckout: CallableFunction;
+};
 
-const Card = (props: Props) => {
+const Card = ({ onCheckout }: Props) => {
   return (
     <div className="overflow-visible max-w-sm rounded bg-gray-800 p-5">
       <span className="block pb-3 text-xl font-medium text-gray-100">
@@ -75,7 +77,10 @@ const Card = (props: Props) => {
           />
         </div>
       </div>
-      <button className="h-12 w-full rounded bg-blue-500 text-white hover:bg-blue-600 focus:outline-none">
+      <button
+        onClick={() => onCheckout()}
+        className="h-12 w-full rounded bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
+      >
         Check Out
       </button>
     </div>
