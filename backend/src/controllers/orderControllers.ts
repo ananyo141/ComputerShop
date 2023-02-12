@@ -30,7 +30,7 @@ export const getUserOrder = asyncWrapper(
 
 export const addUserOrder = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.user);
+    let user = await UserModel.findById(_req.user);
     if (!user) return _next(new CustomError.NotFoundError("User not found"));
 
     // another way to do this is to use the populate method
@@ -68,14 +68,14 @@ export const addUserOrder = asyncWrapper(
       },
     };
     user.orders.push(newOrder);
-    await user.save();
+    user = await user.save();
     _res.status(StatusCodes.CREATED).json(newOrder);
   }
 );
 
 export const deleteUserOrder = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.user).select("orders");
+    let user = await UserModel.findById(_req.user).select("orders");
     if (!user) return _next(new CustomError.NotFoundError("User not found"));
     const index = user.orders.findIndex((item) =>
       item._id?.equals(_req.params.order_id)
@@ -83,7 +83,7 @@ export const deleteUserOrder = asyncWrapper(
     if (index === -1)
       return _next(new CustomError.NotFoundError("Order not found"));
     user.orders.splice(index, 1);
-    const newUser = await user.save();
-    _res.status(StatusCodes.OK).json(newUser.orders);
+    user = await user.save();
+    _res.status(StatusCodes.OK).json(user.orders);
   }
 );
