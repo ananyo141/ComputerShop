@@ -52,9 +52,8 @@ const cartSlice = createSlice({
       const { id, amount } = action.payload;
       return _setCartAmount(state, id, amount);
     },
-    clearCart: (state) => {
-      state.items = {};
-      state.amount = 0;
+    clearCart: (_) => {
+      return initialState;
     },
   },
   // use api calls in thunks and update state in reducers

@@ -97,13 +97,16 @@ const ItemVar1 = ({ productId }: Props) => {
           </div>
         </div>
         <div className="p-6">
-          <h5 className="pb-3 text-lg font-bold">{product.name}</h5>
+          <h5 className="text-lg font-bold">{product.name}</h5>
           <p className="pb-4 text-gray-500">
             <small>
-              Price <u>${product.price}</u>
-              <a href="" className="ml-2 italic text-gray-900">
+              <em className="block italic text-gray-900">
                 Sold by {product.seller}
-              </a>
+              </em>
+              Price
+              <span className="text-lg inline-block pt-1 ml-2">
+                <u>${product.price}</u>
+              </span>
             </small>
           </p>
           <p className="pb-6">

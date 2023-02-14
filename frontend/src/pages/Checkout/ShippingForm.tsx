@@ -1,6 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { HiBars3BottomLeft } from "react-icons/hi2";
 
 type Props = {
   setFirstName: CallableFunction;
@@ -14,12 +12,11 @@ type Props = {
 };
 
 const ShippingForm = (props: Props) => {
-  const navigate = useNavigate();
   props.setCountry("India"); // hack to set default value
   return (
     <form
       id="shipping-form"
-      className="md:text-md mx-auto flex max-w-4xl flex-col gap-4 text-lg"
+      className="md:text-md flex max-w-4xl flex-col gap-4 text-lg"
     >
       <div className="flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
@@ -183,17 +180,6 @@ const ShippingForm = (props: Props) => {
           >
             {" "}
             Privacy Policy
-          </a>
-        </div>
-      </div>
-      <div className="mt-6 border-t border-gray-200 pt-6">
-        <div className="flex justify-between" onClick={() => navigate(-1)}>
-          <a
-            href="#"
-            className="group inline-flex items-center  font-medium text-gray-900 hover:text-gray-700"
-          >
-            <HiBars3BottomLeft className="mr-2 scale-125" />
-            Back
           </a>
         </div>
       </div>

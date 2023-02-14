@@ -2,6 +2,8 @@
 // https://bbbootstrap.com/snippets/
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { HiBars3BottomLeft } from "react-icons/hi2";
 
 import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
@@ -16,6 +18,7 @@ import { ErrorModal, SuccessModal, InfoModal } from "../../components/Modals";
 type Props = {};
 
 const Checkout = (props: Props) => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -81,10 +84,19 @@ const Checkout = (props: Props) => {
         <div className="container mx-auto rounded-lg bg-gray-100 shadow-lg">
           <div className="md:flex">
             <div className="mt-20 w-full px-10 py-5">
-              <h1 className="text-2xl font-thin text-gray-700 xl:pb-12">
+              <div className="-mt-2 border-gray-200 pt-6 md:-mt-16">
+                <div
+                  className="mb-4 flex cursor-pointer items-center"
+                  onClick={() => navigate(-1)}
+                >
+                  <HiBars3BottomLeft className="mr-3 scale-125" />
+                  <span className="md:text-xl">Back</span>
+                </div>
+              </div>
+              <h1 className="pb-6 text-2xl font-thin text-gray-700 xl:pb-12">
                 Shipping Details
               </h1>
-              <div className="flex flex-col-reverse gap-12 md:flex-row lg:gap-20">
+              <div className="flex flex-col gap-12 md:flex-row lg:gap-20">
                 <ShippingForm
                   setFirstName={setFirstName}
                   setLastName={setLastName}

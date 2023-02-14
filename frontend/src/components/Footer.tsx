@@ -6,23 +6,23 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="mt-8 h-[150px] text-center bg-gray-900 text-white">
+    <footer className="mt-8 h-[150px] bg-gray-900 text-center text-white">
       <div className="px-6 pt-6">
-        <div className="flex justify-center mb-6">
+        <div className="mb-6 flex justify-center">
           {FooterIcons.map((obj, i) => (
             <a
-              key={i}
+              key={`Footer${i}`}
               href="#!"
               type="button"
-              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
             >
-              <obj.icon className="w-3 h-full mx-auto" />
+              <obj.icon className="mx-auto h-full w-3" />
             </a>
           ))}
         </div>
       </div>
 
-      <div className="text-center p-4 bg-[rgba(0,0,0,0.2)]">
+      <div className="bg-[rgba(0,0,0,0.2)] p-4 text-center">
         © 2023 Copyright:
         <a className="px-2" target="_blank" href="https://ananyo141.github.io/">
           Ananyobrata Pal

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillCartFill, BsFillBellFill } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
 
+import shoplogo from "../assets/shoplogo.png";
 import NavItems from "../data/NavItems";
 import { useAppDispatch, useAppSelector } from "../hooks/useReduxHooks";
 import { logout } from "../state/features/login/loginSlice";
@@ -18,9 +20,11 @@ const Navbar = (props: Props) => {
     (state) => state.orders.newOrderNotifications
   );
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
 
   const navigator = useNavigate();
   const [isOpen, setOpen] = useState(false);
+  const [isTransparent, setTransparency] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -34,8 +38,24 @@ const Navbar = (props: Props) => {
     dispatch(clearNotification());
   };
 
+  // https://stackoverflow.com/questions/55360736/how-do-i-window-removeeventlistener-using-react-useeffect
+  const onScroll = useCallback(() => {
+    setTransparency(pathname === "/" && window.scrollY === 0);
+  }, [pathname, setTransparency]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname, setTransparency, isTransparent, onScroll]);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between bg-gray-900 py-4 text-gray-200 shadow-lg">
+    <nav
+      className={`navbar navbar-expand-lg navbar-light fixed z-50 flex w-full flex-wrap items-center justify-between py-4 text-gray-200 ${
+        pathname === "/" && isTransparent
+          ? "duration-150"
+          : "bg-gray-900 shadow-lg"
+      }`}
+    >
       <InfoModal
         isOpen={isOpen}
         text="You have successfully logged out!"
@@ -57,18 +77,21 @@ const Navbar = (props: Props) => {
           className="navbar-collapse collapse flex-grow items-center"
           id="navbarSupportedContent1"
         >
-          <Link className="pr-2 text-xl font-semibold text-white" to="/">
-            ComputerShop
-          </Link>
+          <div className="flex flex-col lg:flex-row items-center">
+            <img src={shoplogo} className="mr-2 w-8" alt="computer shop logo" />
+            <Link className="pr-2 text-xl font-semibold text-white" to="/">
+              ComputerShop
+            </Link>
+          </div>
           {/* Left links */}
-          <ul className="navbar-nav list-style-none mr-auto flex flex-col pl-0">
+          <ul className="navbar-nav list-style-none mr-auto flex flex-col lg:flex-row items-center pl-0">
             {NavItems.map((obj, i) => (
-              <li key={i} className="nav-item p-2 opacity-70">
+              <li key={`Nav${i}`} className="nav-item p-2 opacity-70">
                 <Link to={obj.path}>{obj.name}</Link>
               </li>
             ))}
           </ul>
-          {/* <!-- Left links --> */}
+          {/* Left links */}
         </div>
         {/*  Collapsible wrapper */}
 
