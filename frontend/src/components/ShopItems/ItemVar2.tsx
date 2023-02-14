@@ -143,26 +143,6 @@ const ItemVar2 = ({ productId }: Props) => {
                         ></path>
                       </svg>
                     </button>
-
-                    <button
-                      className="ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition duration-150 ease-in-out hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
-                      aria-label="Add to cart"
-                    >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                    </button>
                   </div>
                 </div>
               )}

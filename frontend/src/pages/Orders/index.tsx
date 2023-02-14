@@ -4,6 +4,7 @@ import React from "react";
 import SingleOrder from "./SingleOrder";
 import SpinLoader from "../../components/SpinLoader";
 import { useAppSelector } from "../../hooks/useReduxHooks";
+import EmptyOrders from "./EmptyOrders";
 
 type Props = {};
 
@@ -12,8 +13,10 @@ const Orders = (props: Props) => {
     state.orders.orders,
     state.orders.isLoading,
   ]);
-  return (
-    <section className="-mb-52 space-y-20 divide-y-2 bg-gray-100 p-10">
+  return !isLoading && orders.length === 0 ? (
+    <EmptyOrders />
+  ) : (
+    <section className="-mb-52 min-h-screen space-y-20 divide-y-2 bg-gray-100 p-10">
       {isLoading ? (
         <SpinLoader />
       ) : (
