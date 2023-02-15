@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/app.ts",
-    "genfakerdb": "ts-node ./src/utils/generateFakerProducts.ts"
+    "genfakerdb": "ts-node ./src/db/generateFakerProducts.ts"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
