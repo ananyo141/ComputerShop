@@ -1,6 +1,7 @@
 // start url
-export const HOSTPORT = 3000;
-export const HOSTURL = `http://localhost:${HOSTPORT}`;
+// export const HOSTPORT = 3000;
+// export const HOSTURL = `http://localhost:${HOSTPORT}`;
+export const HOSTURL = `https://computershop-ananyo.onrender.com`;
 export const BASEURL = `${HOSTURL}/api/v1`;
 
 // routes
