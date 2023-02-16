@@ -28,10 +28,10 @@ const _generateModal = (
   return ({ title = initialTitle, text, isOpen, onClose }: Props) => {
     if (!isOpen) return null;
     return ReactDom.createPortal(
-      <div className="fixed z-50 inset-0 bg-black bg-opacity-80">
+      <div className="fixed inset-0 z-50 bg-black bg-opacity-80">
         <div className="flex h-full flex-col items-center justify-center">
           <div
-            className="relative flex h-1/2 w-1/2 flex-col items-center justify-evenly rounded-xl lg:w-1/4"
+            className="relative flex h-1/2 w-min flex-col items-center justify-evenly rounded-xl p-9 sm:w-1/2 md:w-1/3 lg:w-1/4"
             style={{ color: textColor, backgroundColor: bgColor }}
           >
             <RxCross2
@@ -42,11 +42,7 @@ const _generateModal = (
             <h3 className="text-center text-xl font-light tracking-wider opacity-80">
               {text}
             </h3>
-            <img
-              src={image}
-              alt="modal image"
-              className="hidden w-1/6 lg:block lg:w-1/4"
-            />
+            <img src={image} alt="modal image" className="w-1/2 sm:w-1/4" />
             <button
               onClick={() => onClose()}
               className="rounded-full px-16 py-2 text-xl text-white"

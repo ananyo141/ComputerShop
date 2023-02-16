@@ -10,7 +10,7 @@ type Props = {
 const Search = ({ filter, onFilterChange, className }: Props) => {
   return (
     <div className={className}>
-      <div className="mx-auto flex w-64 justify-between rounded-full bg-gradient-to-r from-lime-500 to-lime-600 px-1 text-white lg:w-80">
+      <div className="mx-auto flex w-64 justify-between rounded-full bg-gradient-to-r from-gray-600 to-gray-900 px-1 text-white lg:w-80">
         <input
           type="search"
           value={filter}
@@ -19,7 +19,7 @@ const Search = ({ filter, onFilterChange, className }: Props) => {
           placeholder="Search..."
         />
         <div className="my-1 rounded-full bg-white p-1">
-          <BiSearchAlt2 className="h-6 w-6 text-blue-500" />
+          <BiSearchAlt2 className="h-6 w-6 text-gray-800" />
         </div>
       </div>
     </div>

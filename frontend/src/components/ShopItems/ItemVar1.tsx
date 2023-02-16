@@ -25,7 +25,9 @@ const ItemVar1 = ({ productId }: Props) => {
   const [emptyCartAlert, setEmptyCartAlert] = React.useState(false);
   const [loginAlert, setLoginAlert] = React.useState(false);
   const [readMore, setReadMore] = React.useState(false);
-  const description = readMore ? product.desc : product.desc.slice(0, 80);
+  const description = readMore
+    ? product.desc
+    : product.desc.slice(0, 80) + "...";
 
   // Update product amount if it changes
   // This is required as product amount may be changed but useState doesn't
