@@ -89,12 +89,14 @@ const ItemVar1 = ({ productId }: Props) => {
       <div className="relative block h-full rounded-lg bg-white shadow-lg">
         <div className="flex">
           <div
-            className="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
+            className="mx-4 -mt-4 h-52 w-full overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg xl:h-56"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
-          >
-            <img src={product.imgLink} className="w-full" />
-          </div>
+            style={{
+              backgroundImage: `url(${product.imgLink})`,
+              backgroundPosition: "center",
+            }}
+          ></div>
         </div>
         <div className="p-6">
           <h5 className="text-lg font-bold">{product.name}</h5>
@@ -104,7 +106,7 @@ const ItemVar1 = ({ productId }: Props) => {
                 Sold by {product.seller}
               </em>
               Price
-              <span className="text-lg inline-block pt-1 ml-2">
+              <span className="ml-2 inline-block pt-1 text-lg">
                 <u>${product.price}</u>
               </span>
             </small>

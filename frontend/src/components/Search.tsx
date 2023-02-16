@@ -1,32 +1,25 @@
 import React from "react";
-import { BiSearchAlt } from "react-icons/bi";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 type Props = {
   filter: string;
   onFilterChange: React.Dispatch<React.SetStateAction<string>>;
+  className?: string;
 };
 
-const Search = ({ filter, onFilterChange }: Props) => {
+const Search = ({ filter, onFilterChange, className }: Props) => {
   return (
-    <div className="flex justify-center">
-      <div className="mb-3 xl:w-96">
-        <div className="input-group relative mb-4 flex w-full flex-wrap items-stretch">
-          <input
-            type="search"
-            value={filter}
-            onChange={(e) => onFilterChange(e.target.value)}
-            className="form-control relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="button-addon2"
-          />
-          <button
-            className="btn flex items-center rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition  duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-            type="button"
-            id="button-addon2"
-          >
-            <BiSearchAlt className="w-4 scale-150" />
-          </button>
+    <div className={className}>
+      <div className="mx-auto flex w-64 justify-between rounded-full bg-gradient-to-r from-lime-500 to-lime-600 px-1 text-white lg:w-80">
+        <input
+          type="search"
+          value={filter}
+          onChange={(e) => onFilterChange(e.target.value)}
+          className="w-full bg-inherit p-2 placeholder:text-white focus:outline-none"
+          placeholder="Search..."
+        />
+        <div className="my-1 rounded-full bg-white p-1">
+          <BiSearchAlt2 className="h-6 w-6 text-blue-500" />
         </div>
       </div>
     </div>

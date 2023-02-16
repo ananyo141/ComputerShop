@@ -19,13 +19,17 @@ const Home = (props: Props) => {
   const [filterText, setFilterText] = useState("");
 
   return (
-    <div>
-      <Header />
-      <Search filter={filterText} onFilterChange={setFilterText} />
+    <div className="min-h-screen">
+      <Header className="mb-6 lg:mb-12" />
+      <Search
+        className="mb-12"
+        filter={filterText}
+        onFilterChange={setFilterText}
+      />
       {isLoading ? (
         <SpinLoader />
       ) : (
-        <div className="grid gap-x-4 gap-y-10 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid -mb-44 gap-x-4 gap-y-10 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {Object.values(products).map((product: Product) => {
             // search in both name and desc
             return (
