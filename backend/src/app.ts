@@ -13,19 +13,11 @@ import { connectDB } from "./db/connectDB";
 
 // Use express app
 const app: express.Application = express();
-const port = env.PORT || PORT;
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: [
-      `http://localhost:${port}`,
-      "https://computershop-ananyo.onrender.com",
-    ],
-  })
-);
+app.use(cors());
 
 // Routes
 app.use(`${BASEURL}/auth`, authRouter);
@@ -36,6 +28,7 @@ app.use(`${BASEURL}/products`, productRouter);
 app.use(routeNotFound);
 app.use(errorHandler);
 
+const port = env.PORT || PORT;
 const start = async () => {
   try {
     // connect to database
