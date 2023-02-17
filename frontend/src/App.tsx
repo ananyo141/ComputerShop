@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className="flex flex-col">
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -64,7 +64,7 @@ function App() {
         <div className="pb-[170px]"></div>
         <Footer />
         <ScrollToTop />
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
