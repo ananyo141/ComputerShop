@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import jwt from "jsonwebtoken";
+import { genAccessToken } from "../utils/jwt";
 
-import env from "../utils/environment";
 import User from "../models/userModel";
 import * as CustomErrors from "../errors";
 import asyncWrapper from "../utils/asyncWrapper";
@@ -23,7 +22,7 @@ export const loginController = asyncWrapper(
 
     // passwords match, return access token and refresh token
     if (await user.comparePassword(password, _next)) {
-      const accessToken = jwt.sign(user.toJSON(), env.ACCESS_TOKEN_SECRET);
+      const accessToken = genAccessToken(user);
       _res.status(StatusCodes.OK).json({
         name: user.name,
         email: user.email,
@@ -50,7 +49,7 @@ export const registerController = asyncWrapper(
       return _next(new CustomErrors.BadRequestError("User already exists"));
     else {
       user = await User.create(_req.body);
-      const accessToken = jwt.sign(user.toJSON(), env.ACCESS_TOKEN_SECRET);
+      const accessToken = genAccessToken(user);
       _res
         .status(StatusCodes.CREATED)
         .json({ name: user.name, email: user.email, accessToken: accessToken });

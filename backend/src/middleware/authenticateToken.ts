@@ -15,9 +15,9 @@ export const authenticateToken = (
   if (token == null)
     throw new CustomError.UnauthorizedError("No token provided");
 
-  jwt.verify(token, env.ACCESS_TOKEN_SECRET, (err, user) => {
+  jwt.verify(token, env.ACCESS_TOKEN_SECRET, (err, user: any) => {
     if (err) throw new CustomError.UnauthorizedError(err.message);
-    _req.user = user;
+    _req.user = user.userId;
     _next();
   });
 };

@@ -4,7 +4,7 @@ import { UserDocument } from "../models/userModel";
 import env from "../utils/environment";
 
 export const createUserToken = (user: UserDocument) => {
-  return { name: user.name, userId: user._id, userEmail: user.email };
+  return { userId: user._id, userEmail: user.email };
 };
 
 export const genAccessToken = (user: UserDocument) => {
