@@ -3,7 +3,6 @@ import express from "express";
 import { authenticateToken } from "../middleware/authenticateToken";
 
 import {
-  getUsers,
   getUserInfo,
   patchUser,
   deleteUser,
@@ -27,7 +26,6 @@ export const userRouter = express.Router();
 
 // User Routes //
 // NOTE: User create route is not needed because it is handled by authRoutes
-userRouter.get("/", getUsers);
 userRouter
   .route("/profile")
   .get(authenticateToken, getUserInfo)
