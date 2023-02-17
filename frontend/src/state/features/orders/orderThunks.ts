@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import * as OrderApi from "../../../api/OrderApi";
 import { resolve } from "../../../utils/Resolve";
+import { clearCart } from "../cart/cartSlice";
 import { ShippingDetails } from "./orderTypes";
 
 export const getOrdersApi = createAsyncThunk(
@@ -23,6 +24,7 @@ export const createOrderApi = createAsyncThunk(
       OrderApi.createOrder(payload.accessToken, payload.shippingDetails)
     );
     if (error) return thunkAPI.rejectWithValue(error.message);
+    thunkAPI.dispatch(clearCart()); // clear cart after successful order
     return response;
   }
 );

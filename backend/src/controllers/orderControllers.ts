@@ -68,6 +68,8 @@ export const addUserOrder = asyncWrapper(
       },
     };
     user.orders.push(newOrder);
+    user.cart.splice(0, user.cart.length); // clear cart
+    user.cartTotal = 0; // clear cart total
     user = await user.save();
     _res.status(StatusCodes.CREATED).json(user.orders[user.orders.length - 1]); // send back the last order inserted with _id
   }

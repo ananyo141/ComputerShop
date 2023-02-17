@@ -48,6 +48,7 @@ const orderSlice = createSlice({
       .addCase(createOrderApi.fulfilled, (state, action) => {
         state.isLoading = false;
         state.orders = [action.payload, ...state.orders];
+        state.newOrderNotifications++;
       })
       .addCase(createOrderApi.rejected, (state, action) => {
         state.isLoading = false;

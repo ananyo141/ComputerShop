@@ -8,10 +8,7 @@ import { HiBars3BottomLeft } from "react-icons/hi2";
 import CheckoutItems from "./CheckoutItems";
 import ShippingForm from "./ShippingForm";
 import Card from "./Card";
-import {
-  createOrderApi,
-  increaseNotification,
-} from "../../state/features/orders/orderSlice";
+import { createOrderApi } from "../../state/features/orders/orderSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
 import { ErrorModal, SuccessModal, InfoModal } from "../../components/Modals";
 
@@ -56,7 +53,6 @@ const Checkout = (props: Props) => {
           createOrderApi({ accessToken, shippingDetails })
         ).unwrap();
         setShowSuccessModal(true);
-        dispatch(increaseNotification());
       } catch (err: any) {
         setShowErrorModal(true);
       }
