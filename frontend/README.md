@@ -4,31 +4,34 @@
 - [ ] Add highlight for current tab in navbar
 - [ ] Add wishlist feature
 - [x] Implement useReducer for optimised state management
-- [ ] Use cookies for saving tokens
-- [ ] Add logout
+- [x] Add logout
 
 ## FIXME
-- [ ] Footer overlapping on short content
-- [ ] State doesn't update on few reloads
+- [x] Footer overlapping on short content
+- [x] State doesn't update on few reloads
 - [x] Page scroll to top on route / page change
 
 ### Home Page
 
-- [ ] Render login/signup if not logged in; render logout if logged in
+- [x] Render login/signup if not logged in; render logout if logged in
 - [x] Add state for home add to cart
 - [x] Add search bar to filter products by name
   - [x] Add interactivity
   - [ ] Embolden found search term
 - [x] Show total number of products in cart navbar
-- [ ] Show previous orders in notifications navbar
-- [ ] Show user profile (basics - avatar, name, email) on navbar
+- [x] Show previous orders in notifications navbar
+- [x] Show user profile (basics - avatar, name, email) on navbar
 
-### Data Format
+### State Management
 
-Save two items at the top layer of app:
+The global state is managed by [Redux Toolkit](https://redux-toolkit.js.org/). 
 
-1. products database, and
-2. list of cart items chosen
+Save these items at the top layer of app:
+
+    1. User login details
+    2. Products database, and
+    3. List of cart items chosen
+    4. List of previous orders
 
 - **Products: Stateful**
   Backend Provides initial products database as
@@ -73,6 +76,42 @@ Save two items at the top layer of app:
   { _id1: amount, _id2: amount }
   ```
 
-  Render this object in the Cart page, with removal feature
+  Render this object in the Cart page, with removal feature.
+  
   Products, Cart and wishlistItems are part of a larger state object managed by
-  useReducer.
+  Redux toolkit.
+
+  #### As in, the redux state looks like this:
+  ```
+  {
+    cart: {
+      items: {},
+      amount: 0,
+      subtotal: 0,
+      shippingCost: 0,
+      tax: 0,
+      total: 0,
+      isLoading: false,
+      error: null
+    },
+    products: {
+      items: {},
+      isLoading: true,
+      error: null
+    },
+    login: {
+      isLoggedIn: false,
+      name: null,
+      email: null,
+      accessToken: null,
+      isLoading: false,
+      error: null
+    },
+    orders: {
+      orders: [],
+      newOrderNotifications: 0,
+      isLoading: false,
+      error: null
+    }
+  }
+  ```

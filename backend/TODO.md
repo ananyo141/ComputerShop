@@ -1,11 +1,11 @@
 ## TODOS
 
-- [ ] Use jwt auth
-- [ ] Send products from get point to frontend
+- [x] Use jwt auth
+- [x] Send products from get point to frontend
 
 ## Routes
 
-- [ ] configure routes for api
+- [x] configure routes for api
 - [ ] use pagination while providing products api
 
 ## API Design

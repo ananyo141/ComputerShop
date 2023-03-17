@@ -1,14 +1,39 @@
-# ComputerShop Backend
+# API Documentation for ComputerShop Backend
 
-A node+expressjs backend for the ComputerShop project that augments the frontend
-for providing all the necessary api endpoints and acts as the data handler
-for the application.
+## Auth
+  1. `/api/v1/login` _POST:_ Create auth token for session
+  2. `/api/v1/register` _POST:_ Create new user and get auth token
+  3. `/api/v1/logout` _POST:_ Logout the current session and destroy token
 
-## Installation
+## Users
+  **User Information**
+  <small>(Send access token in header)</small>
+  1. `/api/v1/users`
+     - _GET:_ Get all the users in database
+  2. `/api/v1/users/profile`
+     - _GET:_ Get the user info
+     - _PATCH:_ Update the user
+     - _DELETE:_ Delete the user
 
-Run `yarn` or `npm i` to install the dependencies.
+  **User Cart**
+  1. `/api/v1/users/cart`
+     - _GET:_ Get cart contents of user
+     - _POST:_ Add product to cart
 
-## Usage
+  2. `/api/v1/users/cart/:prod_id`
+     - _PATCH:_ Update product in cart
+     - _DELETE:_ Delete product from cart
 
-Navigate to the project and run `yarn start` or `npm run start` to start
-the localhost server.
+  **User Orders**
+  1. `/api/v1/users/orders`
+     - _GET:_ Get previous orders
+     - _POST:_ Create new order
+
+  2. `/api/v1/users/orders/:order_id`
+     - _GET:_ Get previous order details
+
+## Products
+  1. `/api/v1/products`
+     - _GET:_ Get all products from database
+  2. `/api/v1/products/:id`
+     - _GET:_ Get specified product from database
