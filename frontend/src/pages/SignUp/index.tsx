@@ -17,11 +17,18 @@ const SignUp = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [isPasswordShortOpen, setIsPasswordShortOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
   // const setModal = React.useContext(ModalContext);
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // If password is less than 6 characters,
+    // show error modal
+    if (password.length < 6) {
+      setIsPasswordShortOpen(true);
+      return;
+    }
     try {
       await dispatch(registerUser({ name, email, password })).unwrap();
       setIsSuccessOpen(true);
@@ -39,6 +46,11 @@ const SignUp = (props: Props) => {
         isOpen={isErrorOpen}
         text="User already exists"
         onClose={() => setIsErrorOpen(false)}
+      />
+      <ErrorModal
+        isOpen={isPasswordShortOpen}
+        text="Password too short, should be atleast 6 characters"
+        onClose={() => setIsPasswordShortOpen(false)}
       />
       <SuccessModal
         isOpen={isSuccessOpen}
