@@ -29,17 +29,13 @@ app.use(routeNotFound);
 app.use(errorHandler);
 
 const port = env.PORT || PORT;
-const start = async () => {
-  try {
-    // connect to database
-    await connectDB();
-    // Server setup
-    app.listen(port, () => {
-      console.log(`Server listening on: http://localhost:${port}/`);
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-start();
+try {
+  // connect to database
+  connectDB();
+  // Server setup
+  app.listen(port, () => {
+    console.log(`Server listening on: http://localhost:${port}/`);
+  });
+} catch (error) {
+  console.error(error);
+}
