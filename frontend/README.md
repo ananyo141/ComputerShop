@@ -5,6 +5,7 @@
 - [ ] Add wishlist feature
 - [x] Implement useReducer for optimised state management
 - [x] Add logout
+- [x] Deployed to Cyclic
 
 ## FIXME
 - [x] Footer overlapping on short content
