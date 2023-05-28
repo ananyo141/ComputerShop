@@ -1,7 +1,6 @@
 {
   "name": "ComputerShop",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:ananyo141/ComputerShop.git",
   "author": "Ananyobrata Pal <ananyo141@gmail.com>",
   "license": "MIT",
