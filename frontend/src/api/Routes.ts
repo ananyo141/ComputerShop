@@ -1,7 +1,7 @@
 // start url
 // export const HOSTPORT = 3000;
 // export const HOSTURL = `http://localhost:${HOSTPORT}`;
-export const HOSTURL = `https://computershop-backend.cyclic.app`;
+export const HOSTURL = `https://computer-shop-backend.vercel.app`;
 export const BASEURL = `${HOSTURL}/api/v1`;
 
 // routes
